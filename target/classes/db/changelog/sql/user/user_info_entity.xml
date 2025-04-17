@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+           http://www.liquibase.org/xml/ns/dbchangelog
+           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1744905967073" author="vijayan">
+
+        <createTable tableName="user_info">
+            <column name="user_info_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="mobile_number" type="VARCHAR(20)"/>
+            <column name="alternate_mobile_number" type="VARCHAR(20)"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="country_name" type="VARCHAR(255)"/>
+            <column name="city_name" type="VARCHAR(255)"/>
+            <column name="country_code" type="VARCHAR(255)"/>
+            <column name="zipcode" type="VARCHAR(255)"/>
+            <column name="created_at" type="BIGINT"/>
+            <column name="updated_at" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="fk_userinfo_user"
+                baseTableName="user_info"
+                baseColumnNames="user_id"
+                referencedTableName="user"
+                referencedColumnNames="user_id"
+                deferrable="false"
+                initiallyDeferred="false"
+                onDelete="CASCADE"/>
+
+    </changeSet>
+</databaseChangeLog>
