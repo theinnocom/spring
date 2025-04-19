@@ -4,4 +4,9 @@
     <include file="db/changelog/sql/user/user_role_entity.xml"/>
     <include file="db/changelog/sql/user/user_entity.xml"/>
     <include file="db/changelog/sql/user/user_info_entity.xml"/>
+
+    <include file="db/changelog/sql/facility/FacilityOwnerDetail.xml"/>
+    <include file="db/changelog/sql/facility/Facility.xml"/>
+
+    <include file="db/changelog/sql/building/Building.xml"/>
 </databaseChangeLog>

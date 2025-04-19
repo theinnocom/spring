@@ -39,7 +39,7 @@ public class ConstantStore {
     public static final String ETO = "ETO";
     public static final String FUME_HOOD = "Fume hood";
     public static final String LAND_FILL = "Land fill";
-    public static final String PAIN_SPRAY_BOOTH = "Pain spray booth";
+    public static final String PAIN_SPRAY_BOOTH = "Paint spray booth";
     public static final String RPZ = "RPZ";
     public static final String COOLING_TOWER = "Cooling tower";
     public static final String FIRE_ALARM = "Fire alarm";
@@ -50,4 +50,12 @@ public class ConstantStore {
     public static final String PETROLEUM_BULK_STORAGE = "Petroleum bulk storage";
     public static final String EMERGENCY_EGRESS_AND_LIGHTING = "Emergency Egress and Lighting";
     public static final String BULK_OXYGEN_STORAGE = "Bulk oxygen storage tank";
+    public static final String HYDRAULIC_STORAGE_TANK = "Hydraulic storage tank";
+    public static final String MISCELLANEOUS = "miscellaneous";
+
+    /**
+     * System config
+     */
+
+    public static final String NEWS_FEED = "NEWS_FEED";
 }

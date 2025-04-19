@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="1745066963801" author="vijayan">
+        <createTable tableName="facility">
+            <column name="facility_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="facility_no" type="VARCHAR(255)"/>
+            <column name="facility_name" type="VARCHAR(255)"/>
+            <column name="facility_category" type="VARCHAR(255)"/>
+            <column name="contact_person" type="VARCHAR(255)"/>
+            <column name="contact_title" type="VARCHAR(255)"/>
+            <column name="address_line" type="VARCHAR(255)"/>
+            <column name="alter_address_line" type="VARCHAR(255)"/>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="state" type="VARCHAR(255)"/>
+            <column name="zipcode" type="VARCHAR(50)"/>
+            <column name="facility_email" type="VARCHAR(255)"/>
+            <column name="primary_phone" type="VARCHAR(50)"/>
+            <column name="alter_phone" type="VARCHAR(50)"/>
+            <column name="fax_no" type="VARCHAR(50)"/>
+            <column name="website" type="VARCHAR(255)"/>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true"/>
+            <column name="number_of_buildings" type="BIGINT"/>
+            <column name="created_by" type="BIGINT"/>
+            <column name="updated_by" type="BIGINT"/>
+            <column name="created_at" type="BIGINT"/>
+            <column name="updated_at" type="BIGINT"/>
+            <column name="facility_owner_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="facility"
+                baseColumnNames="created_by"
+                constraintName="fk_facility_created_by"
+                referencedTableName="user"
+                referencedColumnNames="user_id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="facility"
+                baseColumnNames="updated_by"
+                constraintName="fk_facility_updated_by"
+                referencedTableName="user"
+                referencedColumnNames="user_id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="facility"
+                baseColumnNames="facility_owner_id"
+                constraintName="fk_facility_owner_detail"
+                referencedTableName="facility_owner_detail"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

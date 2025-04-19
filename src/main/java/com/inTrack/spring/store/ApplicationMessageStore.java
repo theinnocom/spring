@@ -82,6 +82,18 @@ public class ApplicationMessageStore {
     public static final String UNIQUE_ID_EXISTS = "unique id is exists with another Equipment";
     public static final String JOB_FILLING_ID_EXISTS = "job filling id exists with another Equipment";
     public static final String UNIQUE_ID_AND_JOB_FILLING_ID_EXISTS = "unique id and job filling id exists with another Equipment";
+    public static final String STACK_NOT_FOUND = "Stack not found";
+    public static final MessageFormat CERTIFICATE_NUMBER_EXIST = new MessageFormat("Certificate numbers {0} exists");
+    public static final MessageFormat CERTIFICATE_NUMBER_DUPLICATE = new MessageFormat("Certificate number {0} is duplicated");
+    public static final String ID_MANDATORY = "Id mandatory";
+    public static final String POST_LOG_CREATE_SUCCESS = "Post log created successfully";
+    public static final String POST_LOG_FETCH_SUCCESS = "Post log fetched successfully";
+    public static final String POST_LOG_UPDATE_SUCCESS = "Post log updated successfully";
+    public static final String POST_LOG_DELETE_SUCCESS = "Post log deleted successfully";
+    public static final String EQUIPMENT_NOT_FOUND = "Equipment not found";
+    public static final String FACILITY_OWNER_NOT_FOUND = "Facility owner not found";
+    public static final String FACILITY_ID_MANDATORY = "Facility Id mandatory";
+    public static final String MAX_NEWS_FEED_EXISTS = "Maximum news feed size 10 exists";
     public static final String USER_IN_ACTIVE_SUCCESS = "User in-active successfully";
 
     public static String placeHolderMessage(final MessageFormat messageFormat, final Object... args) {
