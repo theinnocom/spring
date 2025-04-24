@@ -1,0 +1,10 @@
+id;type
+1;None
+2;Interstitial Electronic Monitoring
+3;Interstitial Manual Monitoring
+4;Vapor Well
+5;Groundwater Well
+6;Pressurised Piping Leak Detector
+7;Exempt Suction Piping
+8;Statistical Inventory Reconciliation (SIR)
+9;Other

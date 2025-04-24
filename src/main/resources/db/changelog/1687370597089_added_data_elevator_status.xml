@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="12" author="Vijayan">
+        <loadData tableName="elevator_status"
+                  file="db/changelog/data/elevator_status.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="status_id" type="bigint"/>
+            <column name="status_name" type="varchar(200)"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

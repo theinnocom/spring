@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1695822094985" author="Vijayan">
+        <createTable tableName="fuel_type">
+            <column name="fuel_type_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="fuel_name" type="varchar(20)"/>
+            <column name="created_at" type="bigint"/>
+            <column name="updated_at" type="bigint"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1733992763582" author="vijayan">
+        <createTable tableName="occupancy_certificate_information">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="occupancy_number" type="VARCHAR(255)">
+            </column>
+            <column name="number_of_stories" type="BIGINT">
+            </column>
+            <column name="height_in_feet" type="DOUBLE">
+            </column>
+            <column name="construction_classification" type="VARCHAR(255)">
+            </column>
+            <column name="group_classification" type="VARCHAR(255)">
+            </column>
+            <column name="protection_equipment" type="VARCHAR(255)">
+            </column>
+            <column name="building_type" type="VARCHAR(255)">
+            </column>
+            <column name="note" type="VARCHAR(255)">
+            </column>
+            <column name="building_id" type="BIGINT">
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="occupancy_certificate_information"
+                baseColumnNames="building_id"
+                referencedTableName="building"
+                referencedColumnNames="building_id"
+                constraintName="fk_occupancy_certificate_building"/>
+    </changeSet>
+</databaseChangeLog>

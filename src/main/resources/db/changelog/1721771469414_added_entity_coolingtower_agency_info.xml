@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1721771469414" author="vijayan">
+        <createTable tableName="cooling_tower_agency_info">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="last_certification_date" type="BIGINT">
+            </column>
+            <column name="next_certification_date" type="BIGINT">
+            </column>
+            <column name="certified_by" type="VARCHAR(255)">
+            </column>
+            <column name="last_inspection_date" type="BIGINT">
+            </column>
+            <column name="next_inspection_date" type="BIGINT">
+            </column>
+            <column name="inspected_by" type="VARCHAR(255)">
+            </column>
+            <column name="last_test_date" type="BIGINT">
+            </column>
+            <column name="next_test_date" type="BIGINT">
+            </column>
+            <column name="tested_by" type="VARCHAR(255)">
+            </column>
+            <column name="note" type="VARCHAR(255)"/>
+            <column name="cooling_tower_id" type="BIGINT"/>
+            <column name="cooling_tower_agency_id" type="BIGINT"/>
+        </createTable>
+
+        <createTable tableName="cooling_tower_agency">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)"/>
+        </createTable>
+
+        <loadData tableName="cooling_tower_agency"
+                  file="db/changelog/data/cooling_tower_agency.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(255)"/>
+        </loadData>
+
+        <addForeignKeyConstraint baseTableName="cooling_tower_agency_info"
+                                 baseColumnNames="cooling_tower_id"
+                                 constraintName="fk_cooling_tower"
+                                 referencedTableName="cooling_tower"
+                                 referencedColumnNames="cooling_tower_id"/>
+
+        <addForeignKeyConstraint baseTableName="cooling_tower_agency_info"
+                                 baseColumnNames="cooling_tower_agency_id"
+                                 constraintName="fk_cooling_tower_agency"
+                                 referencedTableName="cooling_tower_agency"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

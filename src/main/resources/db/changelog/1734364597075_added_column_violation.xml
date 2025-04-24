@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1734364597075" author="vijayan">
+        <createTable tableName="issuing_agency">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(100)"/>
+        </createTable>
+
+        <createTable tableName="hearing_status">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(100)"/>
+        </createTable>
+
+        <loadData tableName="issuing_agency"
+                  file="db/changelog/data/issuing_agency.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(100)"/>
+        </loadData>
+
+        <loadData tableName="hearing_status"
+                  file="db/changelog/data/hearing_status.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(100)"/>
+        </loadData>
+
+        <addColumn tableName="violation">
+            <column name="violation_no" type="varchar(255)"/>
+            <column name="issuing_agency_id" type="BIGINT"/>
+            <column name="hearing_status_id" type="BIGINT"/>
+        </addColumn>
+        <dropColumn tableName="violation" columnName="issuing_agency"/>
+        <dropColumn tableName="violation" columnName="hearing_status"/>
+
+        <addForeignKeyConstraint baseTableName="violation"
+                                 baseColumnNames="issuing_agency_id"
+                                 constraintName="fk_issuing_agency_id_violation"
+                                 referencedTableName="issuing_agency"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="violation"
+                                 baseColumnNames="hearing_status_id"
+                                 constraintName="fk_hearing_status_id_violation"
+                                 referencedTableName="hearing_status"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1704887027675" author="Vijayan">
+        <dropColumn tableName="fire_alarm" columnName="battery_location"/>
+
+        <addColumn tableName="fire_alarm">
+            <column name="battery_location_id" type="bigint"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="fire_alarm"
+                                 baseColumnNames="battery_location_id"
+                                 constraintName="fk_fire_alarm_battery_location_id"
+                                 referencedTableName="battery_location"
+                                 referencedColumnNames="battery_location_id"/>
+    </changeSet>
+</databaseChangeLog>

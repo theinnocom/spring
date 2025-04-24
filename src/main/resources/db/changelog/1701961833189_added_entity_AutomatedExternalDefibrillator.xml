@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1701961833189" author="Vijayan">
+        <createTable tableName="automated_external_defibrillator">
+            <column name="external_defibrillator_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="floor" type="varchar(100)"/>
+            <column name="location" type="varchar(50)"/>
+            <column name="make_by" type="varchar(255)"/>
+            <column name="serial_no" type="varchar(60)"/>
+            <column name="installed_by" type="varchar(50)"/>
+            <column name="installed_on" type="bigint"/>
+            <column name="managed_by" type="varchar(100)"/>
+            <column name="is_active" type="boolean" defaultValue="true"/>
+            <column name="building_id" type="bigint"/>
+            <column name="job_filing_information_id" type="bigint"/>
+            <column name="management" type="varchar(50)"/>
+            <column name="model" type="varchar(50)"/>
+            <column name="capacity" type="varchar(50)"/>
+            <column name="ed_battery_date" type="bigint"/>
+            <column name="defib_pad_expiration_date" type="bigint"/>
+            <column name="inspection_date" type="bigint"/>
+            <column name="next_inspection_date" type="bigint"/>
+            <column name="battery_and_cabinet_alarm_change_date" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="automated_external_defibrillator"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_automated_external_defibrillator_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="automated_external_defibrillator"
+                                 baseColumnNames="job_filing_information_id"
+                                 constraintName="fk_automated_external_defibrillator_job_filing_information_id"
+                                 referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+    </changeSet>
+</databaseChangeLog>

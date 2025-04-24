@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1691404408694" author="Vijayan">
+        <createTable tableName="boiler">
+            <column name="boiler_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unique_id" type="varchar(100)">
+                <constraints unique="true"/>
+            </column>
+            <column name="floor" type="varchar(100)"/>
+            <column name="location" type="varchar(50)"/>
+            <column name="make_by" type="varchar(255)"/>
+            <column name="serial_no" type="varchar(60)"/>
+            <column name="installed_by" type="varchar(50)"/>
+            <column name="installed_on" type="bigint"/>
+            <column name="managed_by" type="varchar(100)"/>
+            <column name="is_active" type="boolean" defaultValue="true"/>
+            <column name="device_type" type="VARCHAR(255)"/>
+            <column name="boiler_make" type="VARCHAR(255)"/>
+            <column name="boiler_model" type="VARCHAR(255)"/>
+            <column name="boiler_serial_number" type="VARCHAR(255)"/>
+            <column name="burner_make" type="VARCHAR(255)"/>
+            <column name="burner_model" type="VARCHAR(255)"/>
+            <column name="burner_serial_number" type="VARCHAR(255)"/>
+            <column name="number_of_identical_units" type="BIGINT"/>
+            <column name="capacity" type="DOUBLE"/>
+            <column name="mea_number" type="VARCHAR(255)"/>
+            <column name="dep_number" type="VARCHAR(255)"/>
+            <column name="dep_status" type="VARCHAR(255)"/>
+            <column name="dec_source_id" type="VARCHAR(255)"/>
+            <column name="dob_device_number" type="VARCHAR(255)"/>
+            <column name="boiler_pressure_type" type="VARCHAR(255)"/>
+            <column name="firing_rate_oil" type="DOUBLE"/>
+            <column name="firing_rate_natural_gas" type="DOUBLE"/>
+            <column name="primary_fuel_tank" type="VARCHAR(255)"/>
+            <column name="secondary_fuel_tank" type="VARCHAR(255)"/>
+            <column name="stack_exhausting" type="VARCHAR(255)"/>
+            <column name="fire_department_approval" type="BOOLEAN"/>
+            <column name="schedule_c" type="BOOLEAN"/>
+            <column name="plan_approval" type="BOOLEAN"/>
+            <column name="parameter" type="VARCHAR(255)"/>
+            <column name="octr_number" type="VARCHAR(255)"/>
+            <column name="opacity_monitor_installed" type="BOOLEAN"/>
+            <column name="performance_test_protocol_submitted_to_dec" type="BOOLEAN"/>
+            <column name="performance_test_protocol_date" type="BIGINT"/>
+            <column name="performance_test_report_submitted_to_dep" type="BOOLEAN"/>
+            <column name="performance_test_report_date" type="BIGINT"/>
+            <column name="sulphur_content_sampled" type="BOOLEAN"/>
+            <column name="sulphur_content_percentage" type="DOUBLE"/>
+            <column name="nitrogen_content_required" type="BOOLEAN"/>
+            <column name="nitrogen_content_percentage" type="DOUBLE"/>
+            <column name="nsps_subject" type="BOOLEAN"/>
+            <column name="modified_in_past" type="BOOLEAN"/>
+            <column name="emission_credit_required" type="BOOLEAN"/>
+            <column name="federal_psd_subject" type="BOOLEAN"/>
+            <column name="other_boiler_combined" type="BOOLEAN"/>
+            <column name="fuel_capping" type="BOOLEAN"/>
+            <column name="gas_fuel_capping" type="DOUBLE"/>
+            <column name="gas_nox_emission_factor" type="DOUBLE"/>
+            <column name="oil_fuel_capping" type="DOUBLE"/>
+            <column name="oil_nox_emission_factor" type="DOUBLE"/>
+            <column name="so2_emission_factor_oil" type="DOUBLE"/>
+            <column name="so2_emission_factor_gas" type="DOUBLE"/>
+            <column name="so2_allowable_tons_per_year" type="DOUBLE"/>
+            <column name="nox_allowable_tons_per_year" type="DOUBLE"/>
+            <column name="comments" type="VARCHAR(255)"/>
+
+            <!-- Foreign key relationships -->
+            <column name="test_on_fuel_id" type="BIGINT"/>
+            <column name="boiler_pressure_type_id" type="BIGINT"/>
+            <column name="primary_use_id" type="BIGINT"/>
+            <column name="secondary_fuel_id" type="BIGINT"/>
+            <column name="primary_fuel_id" type="BIGINT"/>
+            <column name="building_id" type="BIGINT"/>
+            <column name="job_filing_information_id" type="BIGINT"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="boiler"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_boiler_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="boiler"
+                                 baseColumnNames="job_filing_information_id"
+                                 constraintName="fk_boiler_job_filing_information_id"
+                                 referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+
+        <addForeignKeyConstraint baseTableName="boiler"
+                                 baseColumnNames="test_on_fuel_id"
+                                 constraintName="fk_boiler_test_on_fuel_id"
+                                 referencedTableName="test_on_fuel"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="boiler"
+                                 baseColumnNames="boiler_pressure_type_id"
+                                 constraintName="fk_boiler_boiler_pressure_type_id"
+                                 referencedTableName="boiler_pressure_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="boiler"
+                                 baseColumnNames="primary_use_id"
+                                 constraintName="fk_boiler_primary_use_id"
+                                 referencedTableName="primary_use"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="boiler"
+                                 baseColumnNames="secondary_fuel_id"
+                                 constraintName="fk_boiler_secondary_fuel_id"
+                                 referencedTableName="fuel_type"
+                                 referencedColumnNames="fuel_type_id"/>
+
+        <addForeignKeyConstraint baseTableName="boiler"
+                                 baseColumnNames="primary_fuel_id"
+                                 constraintName="fk_boiler_primary_fuel_id"
+                                 referencedTableName="fuel_type"
+                                 referencedColumnNames="fuel_type_id"/>
+    </changeSet>
+</databaseChangeLog>

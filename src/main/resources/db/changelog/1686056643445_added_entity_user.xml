@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="01" author="Vijayan">
+        <createTable tableName="user">
+            <column name="user_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(200)">
+                <constraints unique="true" uniqueConstraintName="foo-bar_unique" nullable="false"/>
+            </column>
+            <column name="password" type="varchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_name" type="varchar(200)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="is_profile_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delete_permission" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expiry_date" type="bigint"/>
+            <column name="role_id" type="bigint"/>
+            <column name="created_at" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="bigint"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

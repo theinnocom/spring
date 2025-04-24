@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1734000108917" author="vijayan">
+        <createTable tableName="place_of_assembly_type">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(100)"/>
+        </createTable>
+
+        <loadData tableName="place_of_assembly_type"
+                  file="db/changelog/data/place_of_assembly_type.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(100)"/>
+        </loadData>
+
+        <createTable tableName="place_of_assembly">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="permit_number" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="BIGINT"/>
+            <column name="capacity" type="DOUBLE"/>
+            <column name="building_id" type="BIGINT"/>
+            <column name="permit_obtained_date" type="BIGINT"/>
+            <column name="note" type="VARCHAR(500)"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="place_of_assembly"
+                baseColumnNames="building_id"
+                referencedTableName="building"
+                referencedColumnNames="building_id"
+                constraintName="fk_place_of_assembly_building"/>
+
+        <addForeignKeyConstraint baseTableName="place_of_assembly"
+                                 baseColumnNames="type_id"
+                                 constraintName="fk_place_of_assembly_place_of_assembly_type"
+                                 referencedTableName="place_of_assembly_type"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

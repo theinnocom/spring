@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1718632765887" author="vijayan">
+        <createTable tableName="miscellaneous">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unique_id" type="bigint">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="floor" type="bigint"/>
+            <column name="location" type="varchar(255)"/>
+            <column name="landmark" type="varchar(255)"/>
+            <column name="installed_on" type="bigint"/>
+            <column name="installed_by" type="bigint"/>
+            <column name="management_id" type="bigint"/>
+            <column name="status_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="managed_by" type="varchar(255)"/>
+            <column name="management_note" type="varchar(255)"/>
+            <column name="disconnected_on" type="bigint"/>
+            <column name="application_id" type="varchar(255)"/>
+            <column name="equipment_type" type="varchar(255)"/>
+            <column name="make" type="varchar(255)"/>
+            <column name="model" type="varchar(255)"/>
+            <column name="serial_number" type="varchar(255)"/>
+            <column name="capacity" type="varchar(255)"/>
+            <column name="number_of_identical_units" type="integer"/>
+            <column name="connected_with_other_equipment" type="boolean"/>
+            <column name="note" type="varchar(255)"/>
+            <column name="building_id" type="bigint"/>
+            <column name="job_filing_information_id" type="bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseColumnNames="management_id"
+                baseTableName="miscellaneous"
+                constraintName="fk_miscellaneous_management"
+                referencedColumnNames="id"
+                referencedTableName="management_type"/>
+
+        <addForeignKeyConstraint
+                baseColumnNames="status_id"
+                baseTableName="miscellaneous"
+                constraintName="fk_miscellaneous_status"
+                referencedColumnNames="status_id"
+                referencedTableName="elevator_status"/>
+
+        <addForeignKeyConstraint
+                baseColumnNames="building_id"
+                baseTableName="miscellaneous"
+                constraintName="fk_miscellaneous_building"
+                referencedColumnNames="building_id"
+                referencedTableName="building"/>
+
+        <addForeignKeyConstraint
+                baseColumnNames="job_filing_information_id"
+                baseTableName="miscellaneous"
+                constraintName="fk_miscellaneous_job_filing_information"
+                referencedColumnNames="job_filing_id"
+                referencedTableName="job_filing_information"/>
+    </changeSet>
+</databaseChangeLog>

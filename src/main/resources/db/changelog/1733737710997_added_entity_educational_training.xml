@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1733737710997" author="vijayan">
+        <createTable tableName="educational_training">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="training_title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="regulatory_authority" type="VARCHAR(255)"/>
+            <column name="training_officer_name" type="VARCHAR(255)"/>
+            <column name="last_training_date" type="BIGINT"/>
+            <column name="description" type="TEXT"/>
+            <column name="training_frequency" type="VARCHAR(255)"/>
+            <column name="note" type="varchar(255)"/>
+            <column name="facility_id" type="BIGINT">
+                <constraints foreignKeyName="fk_educational_training_facility"
+                             references="facility(facility_id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

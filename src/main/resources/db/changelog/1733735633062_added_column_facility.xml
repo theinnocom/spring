@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1733735633062" author="vijayan">
+        <addColumn tableName="facility">
+            <column name="facility_name" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="facility_category" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="contact_person" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="contact_title" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="address_line" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="alter_address_line" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="city" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="state" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="zipcode" type="VARCHAR(20)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="facility_email" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="primary_phone" type="VARCHAR(20)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="alter_phone" type="VARCHAR(20)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="fax_no" type="VARCHAR(20)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="website" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="facility_owner_id" type="BIGINT">
+                <constraints foreignKeyName="fk_facility_owner"
+                             references="facility_owner_detail(id)"
+                             nullable="true"/>
+            </column>
+        </addColumn>
+
+        <addColumn tableName="certificate_of_fitness">
+            <column name="name" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

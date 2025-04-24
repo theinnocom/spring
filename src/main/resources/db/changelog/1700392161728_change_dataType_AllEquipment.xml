@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1700392161728" author="Vijayan">
+        <modifyDataType tableName="absorber_chiller" columnName="floor" newDataType="bigint"/>
+        <modifyDataType tableName="air_conditioning_unit" columnName="floor" newDataType="bigint"/>
+        <modifyDataType tableName="boiler" columnName="floor" newDataType="bigint"/>
+        <modifyDataType tableName="cogen_engine_turbine" columnName="floor" newDataType="bigint"/>
+        <modifyDataType tableName="generator" columnName="floor" newDataType="bigint"/>
+        <modifyDataType tableName="incinerator_crematories" columnName="floor" newDataType="bigint"/>
+        <modifyDataType tableName="printing_press" columnName="floor" newDataType="bigint"/>
+        <modifyDataType tableName="stack" columnName="floor" newDataType="bigint"/>
+    </changeSet>
+</databaseChangeLog>

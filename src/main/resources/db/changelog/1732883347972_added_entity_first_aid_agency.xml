@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1732883347972" author="Vijayan">
+        <createTable tableName="first_aid_agency_info">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="monthly_inspection_date" type="BIGINT">
+            </column>
+            <column name="monthly_inspected_by" type="VARCHAR(255)">
+            </column>
+            <column name="annual_inspection_date" type="BIGINT">
+            </column>
+            <column name="annual_inspected_by" type="VARCHAR(255)">
+            </column>
+            <column name="monthly_note" type="TEXT">
+            </column>
+            <column name="annual_note" type="TEXT">
+            </column>
+            <column name="first_aid_kit_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="first_aid_agency_info"
+                                 baseColumnNames="first_aid_kit_id"
+                                 constraintName="fk_first_aid_kit_id_first_aid_kit"
+                                 referencedTableName="first_aid_kit"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

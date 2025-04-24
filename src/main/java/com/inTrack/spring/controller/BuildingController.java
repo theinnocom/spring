@@ -1,18 +1,18 @@
 package com.inTrack.spring.controller;
 
-import com.inTrack.spring.dto.request.BuildingReqDTO;
-import com.inTrack.spring.dto.common.ResponseDTO;
+import com.inTrack.spring.dto.requestDTO.BuildingReqDTO;
+import com.inTrack.spring.dto.requestDTO.CommonListReqDTO;
+import com.inTrack.spring.dto.responseDTO.ResponseDTO;
 import com.inTrack.spring.service.BuildingService;
 import com.inTrack.spring.store.ApplicationMessageStore;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequiredArgsConstructor
 public class BuildingController extends BaseController {
 
-    private final BuildingService buildingService;
+    @Autowired
+    private BuildingService buildingService;
 
     @PostMapping(value = "/building")
     public ResponseDTO createBuilding(@RequestBody final BuildingReqDTO buildingReqDTO) {

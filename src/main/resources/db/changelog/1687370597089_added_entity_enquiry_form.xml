@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="14" author="Vijayan">
+        <createTable tableName="enquire_form">
+            <column name="enquiry_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(200)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(200)"/>
+            <column name="last_name" type="varchar(200)"/>
+            <column name="organization" type="varchar(200)"/>
+            <column name="designation" type="varchar(200)"/>
+            <column name="title" type="varchar(200)"/>
+            <column name="complied_with" type="varchar(300)"/>
+            <column name="is_profile_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city_name" type="varchar(255)"/>
+            <column name="zipcode" type="varchar(100)"/>
+            <column name="address" type="varchar(100)"/>
+            <column name="mobile_number" type="varchar(15)"/>
+            <column name="alternate_mobile_number" type="varchar(15)"/>
+            <column name="updated_by" type="bigint"/>
+            <column name="created_at" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="approved_by" type="bigint"/>
+            <column name="updated_at" type="bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="enquire_form"
+                                 baseColumnNames="updated_by"
+                                 constraintName="fk_enquire_form_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="user_id"/>
+    </changeSet>
+</databaseChangeLog>

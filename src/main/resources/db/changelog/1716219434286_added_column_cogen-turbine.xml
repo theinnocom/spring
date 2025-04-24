@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1716219434286" author="vijayan">
+        <renameColumn tableName="cogen_engine_turbine" oldColumnName="make_by" newColumnName="make" columnDataType="varchar(255)"/>
+        <addColumn tableName="cogen_engine_turbine">
+            <column name="unique_id" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="application_id" type="varchar(255)"/>
+            <column name="application_type" type="varchar(255)"/>
+            <column name="number_of_identical_units" type="int"/>
+            <column name="primary_use" type="varchar(255)"/>
+            <column name="engine_has_control_system" type="boolean"/>
+            <column name="type_of_control_efficiency" type="varchar(255)"/>
+            <column name="model" type="varchar(255)"/>
+            <column name="serial_number" type="varchar(255)"/>
+            <column name="burner_make" type="varchar(255)"/>
+            <column name="burner_model" type="varchar(255)"/>
+            <column name="burner_serial_number" type="varchar(255)"/>
+            <column name="capacity" type="double"/>
+            <column name="burner_type" type="varchar(255)"/>
+            <column name="primary_fuel" type="varchar(255)"/>
+            <column name="secondary_fuel" type="varchar(255)"/>
+            <column name="firing_rate_oil" type="double"/>
+            <column name="firing_rate_natural_gas" type="double"/>
+            <column name="primary_fuel_from_tank" type="varchar(255)"/>
+            <column name="secondary_fuel_from_tank" type="varchar(255)"/>
+            <column name="stack_exhausting" type="varchar(255)"/>
+            <column name="is_turbine_with_unit" type="boolean"/>
+            <column name="is_waste_hrb_with_unit" type="boolean"/>
+            <column name="fuel_capping" type="boolean"/>
+            <column name="gas_fuel_capping" type="double"/>
+            <column name="gas_nox_emission_factor" type="double"/>
+            <column name="oil_fuel_capping" type="double"/>
+            <column name="oil_nox_emission_factor" type="double"/>
+            <column name="so2_emission_factor_oil" type="double"/>
+            <column name="so2_emission_factor_gas" type="double"/>
+            <column name="so2_allowable" type="double"/>
+            <column name="nox_allowable" type="double"/>
+            <column name="comments" type="varchar(255)"/>
+            <column name="status_id" type="bigint"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="cogen_engine_turbine"
+                                 constraintName="fk_cogen_engine_turbine_status_id"
+                                 referencedColumnNames="status_id"
+                                 referencedTableName="elevator_status"/>
+
+    </changeSet>
+</databaseChangeLog>

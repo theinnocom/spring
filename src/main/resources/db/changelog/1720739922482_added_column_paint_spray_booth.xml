@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1720739922482" author="Vijayan">
+        <dropColumn tableName="paint_spray_booth" columnName="stack_exhausting"/>
+        <addColumn tableName="paint_spray_booth">
+            <column name="stack_id" type="bigint"></column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="paint_spray_booth"
+                                 baseColumnNames="stack_id"
+                                 referencedTableName="stack"
+                                 referencedColumnNames="stack_id"
+                                 constraintName="fk_paint_spray_booth_stack" />
+
+    </changeSet>
+</databaseChangeLog>

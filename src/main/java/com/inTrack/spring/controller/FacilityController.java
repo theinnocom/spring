@@ -1,7 +1,7 @@
 package com.inTrack.spring.controller;
 
-import com.inTrack.spring.dto.request.FacilityReqDTO;
-import com.inTrack.spring.dto.common.ResponseDTO;
+import com.inTrack.spring.dto.requestDTO.FacilityReqDTO;
+import com.inTrack.spring.dto.responseDTO.ResponseDTO;
 import com.inTrack.spring.service.FacilityService;
 import com.inTrack.spring.store.ApplicationMessageStore;
 import org.springframework.beans.factory.annotation.Autowired;

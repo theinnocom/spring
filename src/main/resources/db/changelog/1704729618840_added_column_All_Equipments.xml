@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1704729618840" author="Vijayan">
+        <dropColumn tableName="generator" columnName="management"/>
+        <dropColumn tableName="absorber_chiller" columnName="management"/>
+        <dropColumn tableName="air_conditioning_unit" columnName="management"/>
+        <dropColumn tableName="automated_external_defibrillator" columnName="management"/>
+        <dropColumn tableName="boiler" columnName="management"/>
+        <dropColumn tableName="elevator" columnName="management_type"/>
+        <dropColumn tableName="fire_alarm" columnName="management"/>
+        <dropColumn tableName="kitchen_hood_fire_suppression" columnName="management"/>
+        <dropColumn tableName="petroleum_bulk_storage" columnName="management"/>
+        <dropColumn tableName="portable_fire_extinguisher" columnName="management"/>
+        <dropColumn tableName="rpz" columnName="management"/>
+        <dropColumn tableName="emergency_egress_and_lighting" columnName="management"/>
+        <dropColumn tableName="cooling_tower" columnName="management"/>
+
+        <addColumn tableName="generator">
+            <column name="capacity" type="varchar(255)"/>
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="absorber_chiller">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="air_conditioning_unit">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="automated_external_defibrillator">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="boiler">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="elevator">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="fire_alarm">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="kitchen_hood_fire_suppression">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="petroleum_bulk_storage">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="portable_fire_extinguisher">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="rpz">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="emergency_egress_and_lighting">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="cooling_tower">
+            <column name="management_id" type="bigint"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="generator"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_generator_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="absorber_chiller"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_absorber_chiller_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="air_conditioning_unit"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_air_conditioning_unit_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="automated_external_defibrillator"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_automated_external_defibrillator_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+
+        <addForeignKeyConstraint baseTableName="boiler"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_boiler_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+
+        <addForeignKeyConstraint baseTableName="elevator"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_elevator_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+
+        <addForeignKeyConstraint baseTableName="fire_alarm"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_fire_alarm_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+
+        <addForeignKeyConstraint baseTableName="kitchen_hood_fire_suppression"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_kitchen_hood_fire_suppression_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_petroleum_bulk_storage_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="portable_fire_extinguisher"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_portable_fire_extinguisher_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="rpz"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_rpz_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="cooling_tower"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_cooling_tower_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="emergency_egress_and_lighting"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_emergency_egress_and_lighting_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+</databaseChangeLog>

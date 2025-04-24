@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1724581637834" author="vijayan">
+        <createTable tableName="waste_generation_category">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="VARCHAR(200)"/>
+        </createTable>
+
+        <createTable tableName="waste_unit">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="VARCHAR(200)"/>
+        </createTable>
+
+        <createTable tableName="type_of_waste">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="VARCHAR(200)"/>
+        </createTable>
+
+        <!--Load Data-->
+
+        <loadData tableName="waste_generation_category"
+                  file="db/changelog/data/waste_generation_category.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(200)"/>
+        </loadData>
+
+        <loadData tableName="waste_unit"
+                  file="db/changelog/data/waste_unit.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(200)"/>
+        </loadData>
+
+        <loadData tableName="type_of_waste"
+                  file="db/changelog/data/type_of_waste.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(200)"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

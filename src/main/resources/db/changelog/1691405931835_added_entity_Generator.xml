@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1691405960004" author="Vijayan">
+        <createTable tableName="generator">
+            <column name="generator_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="floor" type="BIGINT"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="unique_id" type="VARCHAR(255)"/>
+            <column name="make_by" type="VARCHAR(255)"/>
+            <column name="model" type="VARCHAR(255)"/>
+            <column name="management" type="VARCHAR(255)"/>
+            <column name="landmark" type="VARCHAR(255)"/>
+            <column name="device_type" type="VARCHAR(255)"/>
+            <column name="disconnected_on" type="BIGINT"/>
+            <column name="management_note" type="VARCHAR(255)"/>
+            <column name="no_of_identical_units" type="BIGINT"/>
+            <column name="TIER_level" type="BIGINT"/>
+            <column name="serial_no" type="VARCHAR(255)"/>
+            <column name="installed_on" type="BIGINT"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="installed_by" type="VARCHAR(255)"/>
+            <column name="managed_by" type="VARCHAR(255)"/>
+            <column name="stack_exhausting" type="VARCHAR(255)"/>
+            <column name="mea" type="VARCHAR(255)"/>
+            <column name="dep" type="VARCHAR(255)"/>
+            <column name="is_day_tank" type="BOOLEAN"/>
+            <column name="has_day_tank" type="VARCHAR(255)"/>
+            <column name="firing_rate" type="VARCHAR(255)"/>
+            <column name="is_DEP_permit_expire" type="VARCHAR(255)"/>
+            <column name="DEP_issue_date" type="BIGINT"/>
+            <column name="DEP_expire_date" type="BIGINT"/>
+            <column name="DEP_status" type="VARCHAR(255)"/>
+            <column name="is_DOB_permit_expire" type="VARCHAR(255)"/>
+            <column name="DOB_issue_date" type="BIGINT"/>
+            <column name="DOB_expire_date" type="BIGINT"/>
+            <column name="primary_fuel_type_id" type="BIGINT"/>
+            <column name="secondary_fuel_type_id" type="BIGINT"/>
+            <column name="DOB_status" type="VARCHAR(255)"/>
+            <column name="is_schedule" type="BOOLEAN"/>
+            <column name="is_plan_approval" type="BOOLEAN"/>
+            <column name="is_records_in_permanent_bound_book" type="BOOLEAN"/>
+            <column name="is_fuel_capping" type="BOOLEAN"/>
+            <column name="gas_fuel_capping" type="VARCHAR(255)"/>
+            <column name="gas_nox_emission_factor" type="DOUBLE"/>
+            <column name="oil_fuel_capping" type="VARCHAR(255)"/>
+            <column name="oil_nox_emission_factor" type="DOUBLE"/>
+            <column name="so2_emission_factor_oil" type="DOUBLE"/>
+            <column name="gas_emission_factor" type="DOUBLE"/>
+            <column name="so2_allowable" type="DOUBLE"/>
+            <column name="nox_allowable" type="DOUBLE"/>
+            <column name="hours_of_operation_limit" type="VARCHAR(255)"/>
+            <column name="qualifies_for_doe" type="VARCHAR(255)"/>
+            <column name="registered_with_doe" type="VARCHAR(255)"/>
+            <column name="renewed_with_doe" type="VARCHAR(255)"/>
+            <column name="qualifies_for_dr_program" type="VARCHAR(255)"/>
+            <column name="primary_fuel" type="VARCHAR(255)"/>
+            <column name="secondary_fuel" type="VARCHAR(255)"/>
+            <column name="building_id" type="bigint"/>
+            <column name="job_filing_information_id" type="bigint"/>
+
+        </createTable>
+        <addForeignKeyConstraint baseTableName="generator"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_generator_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="generator"
+                                 baseColumnNames="primary_fuel_type_id"
+                                 constraintName="fk_generator_primary_fuel_type_id"
+                                 referencedTableName="fuel_type"
+                                 referencedColumnNames="fuel_type_id"/>
+
+        <addForeignKeyConstraint baseTableName="generator"
+                                 baseColumnNames="secondary_fuel_type_id"
+                                 constraintName="fk_generator_secondary_fuel_type_id"
+                                 referencedTableName="fuel_type"
+                                 referencedColumnNames="fuel_type_id"/>
+
+        <addForeignKeyConstraint baseTableName="generator"
+                                 baseColumnNames="job_filing_information_id"
+                                 constraintName="fk_generator_job_filing_information_id"
+                                 referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+    </changeSet>
+</databaseChangeLog>

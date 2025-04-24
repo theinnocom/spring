@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1691404764088" author="Vijayan">
+        <createTable tableName="printing_press">
+            <column name="printerId" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="floor" type="varchar(100)"/>
+            <column name="location" type="varchar(50)">
+                <constraints unique="true"/>
+            </column>
+            <column name="make_by" type="varchar(255)"/>
+            <column name="serial_no" type="varchar(60)"/>
+            <column name="installed_by" type="varchar(50)"/>
+            <column name="installed_on" type="bigint"/>
+            <column name="managed_by" type="varchar(100)"/>
+            <column name="is_active" type="boolean" defaultValue="true"/>
+            <column name="building_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="printing_press" baseColumnNames="building_id" constraintName="fk_printing_press_building_id" referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+    </changeSet>
+</databaseChangeLog>

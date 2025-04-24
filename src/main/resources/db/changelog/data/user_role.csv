@@ -1,0 +1,11 @@
+role_id;role;is_cof
+-1;PRIME_USER;false
+1;ADMIN_SUPER_USER;false
+2;ADMIN_USER;false
+3;DATA_ENTRY;false
+4;ENGINEER;true
+5;CLIENT_SUPER_USER;false
+6;CLIENT_USER;false
+7;CLIENT_ADMIN_USER;false
+8;ACCOUNTS;false
+9;LEAD;false

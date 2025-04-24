@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1719584898706" author="vijayan">
+        <createTable tableName="user_mail_permission">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="is_daily" type="BOOLEAN">
+            </column>
+            <column name="is_tomorrow" type="BOOLEAN">
+            </column>
+            <column name="is_weekly" type="BOOLEAN">
+            </column>
+            <column name="is_monthly" type="BOOLEAN">
+            </column>
+            <column name="is_quarterly" type="BOOLEAN">
+            </column>
+            <column name="user_id" type="BIGINT">
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="user_mail_permission"
+                baseColumnNames="user_id"
+                referencedTableName="user"
+                referencedColumnNames="user_id"
+                constraintName="fk_user_mail_permission_user"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,108 @@
+package com.inTrack.spring.entity.equipmentEntity;
+
+import com.inTrack.spring.entity.Building;
+import com.inTrack.spring.entity.JobFilingInformation;
+import com.inTrack.spring.entity.ManagementType;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "bulk_oxygen_storage")
+public class BulkOxygenStorage {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "oxygen_storage_id", nullable = false)
+    private Long oxygenStorageId;
+
+    @Column(name = "unique_id", nullable = false, unique = true)
+    private String uniqueId;
+
+    @Column(name = "model")
+    private String model;
+
+    @Column(name = "floor")
+    private Long floor;
+
+    @Column(name = "location")
+    private String location;
+
+    @Column(name = "landmark")
+    private String landmark;
+
+    @Column(name = "make_by")
+    private String makeBy;
+
+    @Column(name = "serial_no")
+    private String serialNo;
+
+    @Column(name = "installed_on")
+    private Long installedOn;
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
+
+    @Column(name = "installed_by")
+    private String installedBy;
+
+    @Column(name = "managed_by")
+    private String managedBy;
+
+    @Column(name = "device_type")
+    private String deviceType;
+
+    @Column(name = "management_note")
+    private String managementNote;
+
+    @Column(name = "disconnected_on")
+    private Long disconnectedOn;
+
+    @Column(name = "capacity")
+    private String capacity;
+
+    @Column(name = "application_id")
+    private String applicationId;
+
+    @Column(name = "fire_department_approval_obtained")
+    private String fireDepartmentApprovalObtained;
+
+    @Column(name = "fire_department_approval_number")
+    private String fireDepartmentApprovalNumber;
+
+    @Column(name = "pressure_test_performed")
+    private boolean pressureTestPerformed;
+
+    @Column(name = "last_test_date")
+    private Long lastTestDate;
+
+    @Column(name = "next_test_date")
+    private Long nextTestDate;
+
+    @Column(name = "note")
+    private String note;
+
+    @Column(name = "ees_job_number")
+    private String eesJobNumber;
+
+    @Column(name = "comments")
+    private String comments;
+
+    @ManyToOne
+    @JoinColumn(name = "management_id")
+    private ManagementType management;
+
+    @ManyToOne
+    @JoinColumn(name = "building_id")
+    private Building building;
+
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private ElevatorStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "job_filing_information_id")
+    private JobFilingInformation jobFilingInformation;
+}

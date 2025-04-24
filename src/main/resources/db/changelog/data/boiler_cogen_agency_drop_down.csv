@@ -1,0 +1,11 @@
+id;type;is_cogen;is_fire_alarm;is_fume_hood;is_paint_spray_booth
+1;DEP Permit;true;false;true;true
+2;DOB Inspection;true;false;false;false
+3;FD Approval;true;true;false;false
+4;Annual Tune-up;false;false;false;false
+5;Pressure Value Test;false;false;false;false
+6;Maintenance;false;true;false;false
+7;DEC permit;false;false;true;false
+8;Annual inspection;false;false;true;false
+9;WCDOH permit;false;false;true;false
+10;State permit;false;false;false;true

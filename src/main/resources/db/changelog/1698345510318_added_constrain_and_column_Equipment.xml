@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1698345510318" author="Vijayan">
+
+        <addColumn tableName="absorber_chiller">
+            <column name="job_filing_information_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="air_conditioning_unit">
+            <column name="job_filing_information_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="cogen_engine_turbine">
+            <column name="job_filing_information_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="incinerator_crematories">
+            <column name="job_filing_information_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="printing_press">
+            <column name="job_filing_information_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="stack">
+            <column name="job_filing_information_id" type="bigint"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="absorber_chiller" baseColumnNames="job_filing_information_id" constraintName="fk_absorber_chiller_job_filing_information_id" referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+
+        <addForeignKeyConstraint baseTableName="air_conditioning_unit" baseColumnNames="job_filing_information_id" constraintName="fk_air_conditioning_unit_job_filing_information_id" referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+
+        <addForeignKeyConstraint baseTableName="cogen_engine_turbine" baseColumnNames="job_filing_information_id" constraintName="fk_cogen_engine_turbine_job_filing_information_id" referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+
+        <addForeignKeyConstraint baseTableName="incinerator_crematories" baseColumnNames="job_filing_information_id" constraintName="fk_incinerator_crematories_job_filing_information_id" referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+
+        <addForeignKeyConstraint baseTableName="printing_press" baseColumnNames="job_filing_information_id" constraintName="fk_printing_press_job_filing_information_id" referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+
+        <addForeignKeyConstraint baseTableName="stack" baseColumnNames="job_filing_information_id" constraintName="fk_stack_job_filing_information_id" referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+    </changeSet>
+</databaseChangeLog>

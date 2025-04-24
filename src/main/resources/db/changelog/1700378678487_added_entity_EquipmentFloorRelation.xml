@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1700379520945" author="Vijayan">
+        <createTable tableName="equipment_floor_relation">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="floor" type="bigint"/>
+            <column name="building_id" type="bigint"/>
+            <column name="equipment_type" type="varchar(255)"/>
+            <column name="created_at" type="bigint"/>
+            <column name="updated_at" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="equipment_floor_relation"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_equipment_floor_relation_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+    </changeSet>
+</databaseChangeLog>

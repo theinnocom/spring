@@ -1,0 +1,11 @@
+id;type
+1;None
+2;Interstitial Electronic Monitoring
+3;Interstitial Manual Monitoring
+4;Vapor Well
+5;Groundwater Well
+6;In-Tank System (Auto Tank)
+7;Impervious Barrier/Concrete Pad (AST Only)
+8;Statistical Inventory Reconciliation (SIR)
+9;Weep holes in vaults with no access for inspection
+10;Other

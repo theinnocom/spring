@@ -1,0 +1,14 @@
+id;type
+1;None
+2;Diking (AST Only)
+3;Vault (w/access)
+4;Vault (w/o access)
+5;Double-Walled (UST Only)
+6;Synthetic Liner
+7;Remote Impounding Area
+8;Excavation Liner
+9;Modified Double-Walled (AST Only)
+10;Impervious Underlayment (AST Only)
+11;Double Bottom (AST Only)
+12;Double-Walled (AST Only)
+13;Other

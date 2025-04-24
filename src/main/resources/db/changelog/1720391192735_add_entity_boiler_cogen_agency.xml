@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1720391192735" author="vijayan">
+
+        <createTable tableName="boiler_cogen_agency">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_cogen" type="BOOLEAN"/>
+            <column name="is_fire_alarm" type="BOOLEAN"/>
+            <column name="is_fume_hood" type="BOOLEAN"/>
+            <column name="is_paint_spray_booth" type="BOOLEAN"/>
+            <column name="is_boiler" type="BOOLEAN"/>
+            <column name="is_kitchen" type="BOOLEAN"/>
+            <column name="is_rpz" type="BOOLEAN"/>
+            <column name="is_hydraulic" type="BOOLEAN"/>
+            <column name="is_portable" type="BOOLEAN"/>
+            <column name="is_elevator" type="BOOLEAN"/>
+            <column name="is_emergency" type="BOOLEAN"/>
+            <column name="is_land_fill" type="BOOLEAN"/>
+            <column name="is_printing_press" type="BOOLEAN"/>
+        </createTable>
+
+        <loadData tableName="boiler_cogen_agency"
+                  file="db/changelog/data/boiler_cogen_agency_drop_down-01.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(255)"/>
+            <column name="is_cogen" type="BOOLEAN"/>
+            <column name="is_fire_alarm" type="BOOLEAN"/>
+            <column name="is_fume_hood" type="BOOLEAN"/>
+            <column name="is_paint_spray_booth" type="BOOLEAN"/>
+            <column name="is_boiler" type="BOOLEAN"/>
+            <column name="is_kitchen" type="BOOLEAN"/>
+            <column name="is_rpz" type="BOOLEAN"/>
+            <column name="is_hydraulic" type="BOOLEAN"/>
+            <column name="is_portable" type="BOOLEAN"/>
+            <column name="is_elevator" type="BOOLEAN"/>
+            <column name="is_emergency" type="BOOLEAN"/>
+            <column name="is_land_fill" type="BOOLEAN"/>
+            <column name="is_printing_press" type="BOOLEAN"/>
+        </loadData>
+
+        <createTable tableName="boiler_cogen_agency_info">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="issue_date" type="BIGINT"/>
+            <column name="expiration_date" type="BIGINT"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="submitted_date" type="BIGINT"/>
+            <column name="note" type="VARCHAR(255)"/>
+            <column name="last_inspection_date" type="BIGINT"/>
+            <column name="next_inspection_date" type="BIGINT"/>
+            <column name="inspected_by" type="VARCHAR(255)"/>
+            <column name="fd_date" type="BIGINT"/>
+            <column name="date_performed" type="BIGINT"/>
+            <column name="performed_by" type="VARCHAR(255)"/>
+            <column name="is_record_kept" type="BOOLEAN"/>
+            <column name="issued_date" type="BIGINT"/>
+            <column name="is_paint_spray_booth" type="BOOLEAN"/>
+            <column name="is_inspection_tag" type="BOOLEAN"/>
+            <column name="boiler_cogen_agency_id" type="BIGINT"/>
+            <column name="inspection_type" type="BIGINT"/>
+            <column name="DOB_issue_date" type="BIGINT"/>
+            <column name="cogen_turbine_id" type="BIGINT"/>
+            <column name="fire_alarm_id" type="BIGINT"/>
+            <column name="fume_hood_id" type="BIGINT"/>
+            <column name="paint_spray_booth_id" type="BIGINT"/>
+            <column name="boiler_id" type="BIGINT"/>
+            <column name="kitchen_hood_id" type="BIGINT"/>
+
+            <column name="rpz_id" type="BIGINT"/>
+            <column name="elevator_id" type="BIGINT"/>
+            <column name="emergency_egress_id" type="BIGINT"/>
+            <column name="hydraulic_id" type="BIGINT"/>
+            <column name="land_fill_id" type="BIGINT"/>
+            <column name="printing_press_id" type="BIGINT"/>
+            <column name="portable_fire_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="cogen_turbine_id"
+                referencedTableName="cogen_engine_turbine"
+                referencedColumnNames="engine_id"
+                constraintName="fk_boiler_cogen_agency_info_cogen_engine_turbine"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="fire_alarm_id"
+                referencedTableName="fire_alarm"
+                referencedColumnNames="fire_alarm_id"
+                constraintName="fk_boiler_cogen_agency_info_fire_alarm"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="fume_hood_id"
+                referencedTableName="fume_hood"
+                referencedColumnNames="fume_hood_id"
+                constraintName="fk_boiler_cogen_agency_info_fume_hood"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="paint_spray_booth_id"
+                referencedTableName="paint_spray_booth"
+                referencedColumnNames="pain_spray_id"
+                constraintName="fk_boiler_cogen_agency_info_paint_spray_booth"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="boiler_id"
+                referencedTableName="boiler"
+                referencedColumnNames="boiler_id"
+                constraintName="fk_boiler_cogen_agency_info_boiler_id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="kitchen_hood_id"
+                referencedTableName="kitchen_hood_fire_suppression"
+                referencedColumnNames="kitchen_hood_id"
+                constraintName="fk_boiler_cogen_agency_info_kitchen_hood_id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="boiler_cogen_agency_id"
+                referencedTableName="boiler_cogen_agency"
+                referencedColumnNames="id"
+                constraintName="fk_boiler_cogen_agency_info_boiler_cogen_agency"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="inspection_type"
+                referencedTableName="management_type"
+                referencedColumnNames="id"
+                constraintName="fk_boiler_cogen_agency_info_management_type"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="rpz_id"
+                constraintName="fk_boiler_cogen_agency_info_rpz"
+                referencedTableName="rpz"
+                referencedColumnNames="RPZ_id"/>
+
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="elevator_id"
+                constraintName="fk_boiler_cogen_agency_info_elevator"
+                referencedTableName="elevator"
+                referencedColumnNames="elevator_id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="emergency_egress_id"
+                constraintName="fk_boiler_cogen_agency_info_emergency_egress"
+                referencedTableName="emergency_egress_and_lighting"
+                referencedColumnNames="emergency_egress_id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="hydraulic_id"
+                constraintName="fk_boiler_cogen_agency_info_hydraulic"
+                referencedTableName="hydraulic_storage_tank"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="land_fill_id"
+                constraintName="fk_boiler_cogen_agency_info_land_fill"
+                referencedTableName="land_fill"
+                referencedColumnNames="land_fill_id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="printing_press_id"
+                constraintName="fk_boiler_cogen_agency_info_printing_press"
+                referencedTableName="printing_press"
+                referencedColumnNames="printer_id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="boiler_cogen_agency_info"
+                baseColumnNames="portable_fire_id"
+                constraintName="fk_boiler_cogen_agency_info_portable_fire"
+                referencedTableName="portable_fire_extinguisher"
+                referencedColumnNames="fire_extinguisher_id"/>
+    </changeSet>
+</databaseChangeLog>

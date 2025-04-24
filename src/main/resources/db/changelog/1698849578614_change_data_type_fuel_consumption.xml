@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1698849578614" author="Vijayan">
+        <modifyDataType tableName="fuel_consumption" columnName="january" newDataType="double"/>
+        <modifyDataType tableName="fuel_consumption" columnName="february" newDataType="double"/>
+        <modifyDataType tableName="fuel_consumption" columnName="march" newDataType="double"/>
+        <modifyDataType tableName="fuel_consumption" columnName="april" newDataType="double"/>
+        <modifyDataType tableName="fuel_consumption" columnName="may" newDataType="double"/>
+        <modifyDataType tableName="fuel_consumption" columnName="june" newDataType="double"/>
+        <modifyDataType tableName="fuel_consumption" columnName="july" newDataType="double"/>
+        <modifyDataType tableName="fuel_consumption" columnName="august" newDataType="double"/>
+        <modifyDataType tableName="fuel_consumption" columnName="september" newDataType="double"/>
+        <modifyDataType tableName="fuel_consumption" columnName="october" newDataType="double"/>
+        <modifyDataType tableName="fuel_consumption" columnName="november" newDataType="double"/>
+        <modifyDataType tableName="fuel_consumption" columnName="december" newDataType="double"/>
+    </changeSet>
+</databaseChangeLog>

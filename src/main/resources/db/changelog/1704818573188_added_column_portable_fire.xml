@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1704818573188" author="Vijayan">
+        <dropColumn tableName="portable_fire_extinguisher" columnName="class_type"/>
+        <dropColumn tableName="generator" columnName="TIER_level"/>
+
+        <addColumn tableName="portable_fire_extinguisher">
+            <column name="class_type_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="boiler">
+            <column name="landmark" type="varchar(255)"/>
+        </addColumn>
+
+        <addColumn tableName="generator">
+            <column name="tier_level_id" type="bigint"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="portable_fire_extinguisher"
+                                 baseColumnNames="class_type_id"
+                                 constraintName="fk_portable_fire_extinguisher_class_type_id"
+                                 referencedTableName="class_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="generator"
+                                 baseColumnNames="tier_level_id"
+                                 constraintName="fk_generator_tier_level_id"
+                                 referencedTableName="tier_level"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+</databaseChangeLog>

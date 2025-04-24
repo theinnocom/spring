@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1701363198031" author="Vijayan">
+
+        <addColumn tableName="fire_alarm">
+            <column name="model" type="varchar(200)"/>
+            <column name="capacity" type="varchar(100)"/>
+            <column name="fire_alarm_type" type="varchar(200)"/>
+            <column name="battery_location" type="varchar(255)"/>
+            <column name="transient_suppressors" type="varchar(200)"/>
+            <column name="control_unit_trouble_signals" type="varchar(200)"/>
+            <column name="remote_annunciations" type="varchar(200)"/>
+            <column name="initiating_devices" type="varchar(200)"/>
+            <column name="guards_tour_equipment" type="varchar(200)"/>
+            <column name="interface_equipment" type="varchar(200)"/>
+            <column name="alarm_notification_appliances" type="varchar(200)"/>
+            <column name="supervising_station_fire_alarm_system" type="varchar(200)"/>
+            <column name="emergency_communications_equipment" type="varchar(200)"/>
+            <column name="special_procedures" type="varchar(200)"/>
+            <column name="last_inspection_date" type="bigint"/>
+            <column name="next_inspection_date" type="bigint"/>
+            <column name="fiber_optic_connection_id" type="bigint"/>
+            <column name="control_equipment_id" type="bigint"/>
+            <column name="battery_type_id" type="bigint"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="fire_alarm"
+                                 baseColumnNames="fiber_optic_connection_id"
+                                 constraintName="fk_fire_alarm_fiber_optic_connection_id"
+                                 referencedTableName="fiber_optic_connection"
+                                 referencedColumnNames="fiber_optic_connection_id"/>
+
+        <addForeignKeyConstraint baseTableName="fire_alarm"
+                                 baseColumnNames="control_equipment_id"
+                                 constraintName="fk_fire_alarm_control_equipment_id"
+                                 referencedTableName="control_equipment"
+                                 referencedColumnNames="control_equipment_id"/>
+
+        <addForeignKeyConstraint baseTableName="fire_alarm"
+                                 baseColumnNames="battery_type_id"
+                                 constraintName="fk_fire_alarm_battery_type_id"
+                                 referencedTableName="battery_type"
+                                 referencedColumnNames="battery_type_id"/>
+    </changeSet>
+</databaseChangeLog>

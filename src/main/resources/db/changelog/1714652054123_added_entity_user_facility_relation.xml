@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1714652054123" author="vijayan">
+        <createTable tableName="user_facility_relation">
+            <column name="id" type="Bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="Bigint"/>
+            <column name="facility_id" type="Bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="user_facility_relation"
+                                 constraintName="fk_user_facility_relation_user_id"
+                                 referencedColumnNames="user_id"
+                                 referencedTableName="user"/>
+
+        <addForeignKeyConstraint baseColumnNames="facility_id"
+                                 baseTableName="user_facility_relation"
+                                 constraintName="fk_user_facility_relation_facility_id"
+                                 referencedColumnNames="facility_id"
+                                 referencedTableName="facility"/>
+    </changeSet>
+</databaseChangeLog>

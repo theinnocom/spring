@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1703503136093" author="Vijayan">
+        <createTable tableName="emergency_egress_and_lighting">
+            <column name="emergency_egress_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unique_id" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="floor" type="BIGINT"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="landmark" type="VARCHAR(255)"/>
+            <column name="device_type" type="VARCHAR(255)"/>
+            <column name="is_active" type="BOOLEAN" defaultValue="true"/>
+            <column name="installed_on" type="BIGINT"/>
+            <column name="installed_by" type="VARCHAR(255)"/>
+            <column name="management" type="VARCHAR(255)"/>
+            <column name="managed_by" type="VARCHAR(255)"/>
+            <column name="management_note" type="VARCHAR(255)"/>
+            <column name="disconnected_on" type="BIGINT"/>
+            <column name="make" type="VARCHAR(255)"/>
+            <column name="model" type="VARCHAR(255)"/>
+            <column name="serial_no" type="VARCHAR(255)"/>
+            <column name="num_of_sign_boards" type="BIGINT"/>
+            <column name="permit_number" type="VARCHAR(255)"/>
+            <column name="permit_date" type="BIGINT"/>
+            <column name="building_id" type="bigint"/>
+            <column name="job_filing_information_id" type="bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="emergency_egress_and_lighting"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_emergency_egress_and_lighting_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="emergency_egress_and_lighting"
+                                 baseColumnNames="job_filing_information_id"
+                                 constraintName="fk_emergency_egress_and_lighting_job_filing_information_id"
+                                 referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+
+    </changeSet>
+</databaseChangeLog>

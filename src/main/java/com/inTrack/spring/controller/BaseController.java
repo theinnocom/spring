@@ -1,8 +1,7 @@
 package com.inTrack.spring.controller;
 
 
-
-import com.inTrack.spring.dto.common.ResponseDTO;
+import com.inTrack.spring.dto.responseDTO.ResponseDTO;
 import com.inTrack.spring.store.ApplicationMessageStore;
 import jakarta.servlet.http.HttpServletResponse;
 

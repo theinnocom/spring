@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1719253462005" author="vijayan">
+        <renameTable oldTableName="pain_spray_booth" newTableName="paint_spray_booth"/>
+        <addColumn tableName="paint_spray_booth">
+            <column name="application_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unique_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="make" type="VARCHAR(255)">
+            </column>
+            <column name="model" type="VARCHAR(255)">
+            </column>
+            <column name="management_note" type="VARCHAR(255)">
+            </column>
+            <column name="serial_number" type="VARCHAR(255)">
+            </column>
+            <column name="stack_exhausting" type="VARCHAR(255)"/>
+            <column name="hours_of_operation_per_day" type="BIGINT">
+            </column>
+            <column name="days_of_operation_per_week" type="BIGINT">
+            </column>
+            <column name="total_voc_content_per_month" type="DOUBLE">
+            </column>
+            <column name="total_annual_voc_content" type="DOUBLE">
+            </column>
+            <column name="cap_on_voc_content" type="BOOLEAN">
+            </column>
+            <column name="paint_lb_per_gal" type="DOUBLE"/>
+            <column name="solvent_lb_per_gal" type="DOUBLE"/>
+            <column name="ink_lb_per_gal" type="DOUBLE"/>
+            <column name="monthly_limit_gal_per_month" type="DOUBLE"/>
+            <column name="comments" type="VARCHAR(255)"/>
+            <column name="status_id" type="BIGINT"/>
+        </addColumn>
+
+        <createTable tableName="paint_detail">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="volume" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="density" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="voc" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="paint_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="paint_detail"
+                baseColumnNames="paint_id"
+                referencedTableName="paint_spray_booth"
+                referencedColumnNames="pain_spray_id"
+                constraintName="fk_paint_detail_paint_spray_booth"/>
+
+        <addForeignKeyConstraint
+                baseTableName="paint_spray_booth"
+                baseColumnNames="status_id"
+                referencedTableName="elevator_status"
+                referencedColumnNames="status_id"
+                constraintName="fk_paint_spray_booth_elevator_status"/>
+    </changeSet>
+</databaseChangeLog>

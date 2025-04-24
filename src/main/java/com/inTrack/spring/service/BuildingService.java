@@ -1,16 +1,20 @@
 package com.inTrack.spring.service;
 
-import com.inTrack.spring.dto.request.AddressReqDTO;
-import com.inTrack.spring.dto.request.BuildingReqDTO;
-import com.inTrack.spring.dto.response.BuildingResDTO;
+import com.inTrack.spring.UtilService.CommonUtilService;
+import com.inTrack.spring.dto.requestDTO.AddressReqDTO;
+import com.inTrack.spring.dto.requestDTO.BuildingReqDTO;
+import com.inTrack.spring.dto.responseDTO.BuildingResDTO;
+import com.inTrack.spring.entity.Address;
+import com.inTrack.spring.entity.Borough;
 import com.inTrack.spring.entity.Building;
 import com.inTrack.spring.entity.Facility;
 import com.inTrack.spring.exception.ValidationError;
+import com.inTrack.spring.repository.AddressRepository;
+import com.inTrack.spring.repository.BoroughRepository;
 import com.inTrack.spring.repository.BuildingRepository;
 import com.inTrack.spring.repository.FacilityRepository;
 import com.inTrack.spring.store.ApplicationMessageStore;
 import com.inTrack.spring.store.ConstantStore;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -19,11 +23,22 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class BuildingService {
 
-    private final BuildingRepository buildingRepository;
-    private final FacilityRepository facilityRepository;
+    @Autowired
+    private BuildingRepository buildingRepository;
+
+    @Autowired
+    private BoroughRepository boroughRepository;
+
+    @Autowired
+    private FacilityRepository facilityRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
+    private CommonUtilService commonUtilService;
 
     public BuildingResDTO createBuilding(final BuildingReqDTO buildingReqDTO, final Long buildingId) {
         try {
@@ -75,6 +90,25 @@ public class BuildingService {
 
     public BuildingResDTO updateBuilding(final BuildingReqDTO buildingReqDTO, final Long buildingId) {
         return this.createBuilding(buildingReqDTO, buildingId);
+    }
+
+    private Address saveAddress(final AddressReqDTO addressReqDTO) {
+        final Address address = new Address();
+        final Borough borough = this.boroughRepository.findByBoroughId(addressReqDTO.getBoroughId());
+        if (borough == null) {
+            throw new ValidationError(ApplicationMessageStore.BOROUGH_NOT_FOUND);
+        }
+        address.setBorough(borough);
+        address.setAddressDetails(addressReqDTO.getAddressDetails());
+        address.setAlternativeAddress(addressReqDTO.getAlternativeAddress());
+        address.setOptionalAddress(addressReqDTO.getOptionalAddress());
+        address.setCity(addressReqDTO.getCity());
+        address.setCounty(addressReqDTO.getCounty());
+        address.setState(addressReqDTO.getState());
+        address.setZipcode(addressReqDTO.getZipcode());
+        address.setMobileNumber(addressReqDTO.getMobileNumber());
+        address.setCreatedAt(System.currentTimeMillis());
+        return this.addressRepository.save(address);
     }
 
     private BuildingResDTO setBuilding(final Building building) {

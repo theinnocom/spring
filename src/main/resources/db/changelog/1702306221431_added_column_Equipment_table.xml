@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1702096640467" author="Vijayan">
+        <addColumn tableName="fire_alarm">
+            <column name="unique_id" type="varchar(200)">
+                <constraints unique="true"/>
+            </column>
+        </addColumn>
+
+        <addColumn tableName="absorber_chiller">
+            <column name="unique_id" type="varchar(200)">
+                <constraints unique="true" />
+            </column>
+        </addColumn>
+
+        <addColumn tableName="air_conditioning_unit">
+            <column name="unique_id" type="varchar(200)">
+                <constraints unique="true" />
+            </column>
+        </addColumn>
+
+        <addColumn tableName="automated_external_defibrillator">
+            <column name="unique_id" type="varchar(200)">
+                <constraints unique="true" />
+            </column>
+        </addColumn>
+
+        <addColumn tableName="portable_fire_extinguisher">
+            <column name="unique_id" type="varchar(200)">
+                <constraints unique="true" />
+            </column>
+            <column name="landmark" type="varchar(200)"/>
+            <column name="device_type" type="varchar(200)"/>
+            <column name="disconnected_on" type="varchar(255)"/>
+            <column name="management_note" type="varchar(200)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

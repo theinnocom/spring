@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1698940294475" author="Vijayan">
+        <dropForeignKeyConstraint baseTableName="violation" constraintName="fk_violation_facility_id"/>
+        <dropColumn tableName="violation" columnName="facility_id"/>
+        <addColumn tableName="violation">
+            <column name="building_id" type="bigint"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="violation"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_violation_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+    </changeSet>
+</databaseChangeLog>

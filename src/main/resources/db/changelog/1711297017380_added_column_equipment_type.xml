@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1711297017380" author="vijayan">
+        <createTable tableName="equipment_permit">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <!-- Permits -->
+            <column name="dob" type="VARCHAR(255)"/>
+            <column name="dep" type="VARCHAR(255)"/>
+            <column name="fd" type="VARCHAR(255)"/>
+            <column name="dec" type="VARCHAR(255)"/>
+            <column name="dot" type="VARCHAR(255)"/>
+            <column name="state" type="VARCHAR(255)"/>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="rcdoh" type="VARCHAR(255)"/>
+
+            <!-- Test -->
+            <column name="pressure_valve" type="VARCHAR(255)"/>
+            <column name="stack" type="VARCHAR(255)"/>
+            <column name="annual_cathodic_protection" type="VARCHAR(255)"/>
+            <column name="tank_tightness" type="VARCHAR(255)"/>
+
+            <!-- Consumption -->
+            <column name="annual_fuel" type="VARCHAR(255)"/>
+            <column name="natural_gas" type="VARCHAR(255)"/>
+            <column name="fuel_oil" type="VARCHAR(255)"/>
+            <column name="diesel_oil" type="VARCHAR(255)"/>
+            <column name="inks" type="VARCHAR(255)"/>
+            <column name="fountain_solution" type="VARCHAR(255)"/>
+            <column name="cleaning_agent" type="VARCHAR(255)"/>
+            <column name="voc" type="VARCHAR(255)"/>
+
+            <column name="equipment_name" type="VARCHAR(255)"/>
+            <column name="spill_compliance" type="VARCHAR(255)"/>
+            <column name="annual_waste_burned" type="VARCHAR(255)"/>
+            <column name="annual_tune_up" type="VARCHAR(255)"/>
+            <column name="inspection_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="certification_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="equipment_permit"
+                baseColumnNames="inspection_id"
+                constraintName="fk_equipment_permit_inspection"
+                referencedTableName="inspection"
+                referencedColumnNames="inspection_id"
+        />
+
+        <addForeignKeyConstraint
+                baseTableName="equipment_permit"
+                baseColumnNames="certification_id"
+                constraintName="fk_equipment_permit_certification"
+                referencedTableName="certification"
+                referencedColumnNames="certification_id"
+        />
+    </changeSet>
+</databaseChangeLog>

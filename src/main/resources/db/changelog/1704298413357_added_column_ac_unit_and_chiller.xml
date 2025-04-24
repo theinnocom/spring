@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1704298413357" author="Vijayan">
+        <dropColumn tableName="absorber_chiller" columnName="chiller_type"/>
+        <dropColumn tableName="air_conditioning_unit" columnName="chiller_type"/>
+
+        <addColumn tableName="absorber_chiller">
+            <column name="chiller_type_id" type="bigint"/>
+            <column name="type_of_chiller_others_list" type="varchar(255)"/>
+        </addColumn>
+
+        <addColumn tableName="air_conditioning_unit">
+            <column name="chiller_type_id" type="bigint"/>
+            <column name="type_of_chiller_others_list" type="varchar(255)"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="absorber_chiller"
+                                 baseColumnNames="chiller_type_id"
+                                 constraintName="fk_absorber_chiller_chiller_type_id"
+                                 referencedTableName="type_of_chiller"
+                                 referencedColumnNames="chiller_type_id"/>
+
+        <addForeignKeyConstraint baseTableName="air_conditioning_unit"
+                                 baseColumnNames="chiller_type_id"
+                                 constraintName="fk_air_conditioning_unit_chiller_type_id"
+                                 referencedTableName="type_of_chiller"
+                                 referencedColumnNames="chiller_type_id"/>
+
+    </changeSet>
+</databaseChangeLog>

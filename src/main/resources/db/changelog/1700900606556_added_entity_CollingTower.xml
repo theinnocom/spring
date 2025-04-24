@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1700900606556" author="Vijayan">
+        <createTable tableName="cooling_tower">
+            <column name="cooling_tower_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unique_id" type="varchar(100)">
+                <constraints unique="true"/>
+            </column>
+            <column name="floor" type="varchar(100)"/>
+            <column name="location" type="varchar(50)"/>
+            <column name="make_by" type="varchar(255)"/>
+            <column name="serial_no" type="varchar(60)"/>
+            <column name="installed_by" type="varchar(50)"/>
+            <column name="installed_on" type="bigint"/>
+            <column name="managed_by" type="varchar(100)"/>
+            <column name="is_active" type="boolean" defaultValue="true"/>
+            <column name="building_id" type="bigint"/>
+            <column name="job_filing_information_id" type="bigint"/>
+            <column name="management_note" type="VARCHAR(255)"/>
+            <column name="management" type="VARCHAR(255)"/>
+            <column name="device_type" type="VARCHAR(255)"/>
+            <column name="make" type="VARCHAR(255)"/>
+            <column name="model" type="VARCHAR(255)"/>
+            <column name="serial_number" type="VARCHAR(255)"/>
+            <column name="cooling_capacity" type="DOUBLE"/>
+            <column name="cooling_capacity_unit" type="VARCHAR(255)"/>
+            <column name="basin_capacity" type="DOUBLE"/>
+            <column name="basin_capacity_unit" type="VARCHAR(255)"/>
+            <column name="intended_use" type="VARCHAR(255)"/>
+            <column name="equipment_name" type="VARCHAR(255)"/>
+            <column name="number_of_cells" type="BIGINT"/>
+            <column name="state_registration_completed" type="BOOLEAN"/>
+            <column name="state_equipment_id" type="BIGINT"/>
+            <column name="nyc_dob_registration_no" type="BIGINT"/>
+            <column name="commissioning_date" type="BIGINT"/>
+            <column name="securely_affix_nycdob_registration" type="BOOLEAN"/>
+            <column name="type_of_colling_tower_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Create TypeOfCollingTower Table -->
+    <changeSet id="1703446046459" author="vijayan">
+        <createTable tableName="type_of_colling_tower">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="Varchar(200)"/>
+        </createTable>
+        <loadData tableName="type_of_colling_tower"
+                  file="db/changelog/data/Type_of_colling_tower.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(200)"/>
+        </loadData>
+    </changeSet>
+
+    <!-- Add Foreign Key Constraint -->
+    <changeSet id="1703446052325" author="vijayan">
+        <addForeignKeyConstraint baseTableName="cooling_tower"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_cooling_tower_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="cooling_tower"
+                                 baseColumnNames="job_filing_information_id"
+                                 constraintName="fk_cooling_tower_job_filing_information_id"
+                                 referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+
+        <addForeignKeyConstraint baseTableName="cooling_tower"
+                                 baseColumnNames="type_of_colling_tower_id"
+                                 constraintName="fk_cooling_tower_type_of_colling_tower_id"
+                                 referencedTableName="type_of_colling_tower"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

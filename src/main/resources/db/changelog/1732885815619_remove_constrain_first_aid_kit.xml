@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1732885815619" author="vijayan">
+        <dropNotNullConstraint
+                tableName="first_aid_kit"
+                columnName="status"
+                columnDataType="VARCHAR(255)" />
+
+        <dropNotNullConstraint
+                tableName="first_aid_kit"
+                columnName="management_id"
+                columnDataType="BIGINT" />
+
+        <dropNotNullConstraint
+                tableName="first_aid_kit"
+                columnName="aid_kit_restored_after_use"
+                columnDataType="BOOLEAN" />
+
+
+        <dropNotNullConstraint
+                tableName="first_aid_kit"
+                columnName="employee_trained"
+                columnDataType="BOOLEAN" />
+    </changeSet>
+</databaseChangeLog>

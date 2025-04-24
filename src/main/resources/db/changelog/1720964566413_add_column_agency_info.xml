@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1720964566413" author="vijayan">
+        <addColumn tableName="boiler_cogen_agency_info">
+            <column name="last_test_date" type="BIGINT">
+            </column>
+            <column name="next_test_date" type="BIGINT">
+            </column>
+            <column name="test_done_by" type="VARCHAR(255)">
+            </column>
+            <column name="fdny_certificate_no" type="VARCHAR(255)">
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

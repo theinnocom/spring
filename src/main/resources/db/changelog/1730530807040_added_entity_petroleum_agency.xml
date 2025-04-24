@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1730530807040" author="vijayan">
+        <createTable tableName="petroleum_bulk_storage_agency">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="dec_permit" type="VARCHAR(255)"/>
+            <column name="pbs_expiration_date" type="BIGINT"/>
+            <column name="tank_tightness_test_required" type="BOOLEAN"/>
+            <column name="tank_tightness_test_date" type="BIGINT"/>
+            <column name="next_tank_tightness_test_date" type="BIGINT"/>
+            <column name="tank_tightness_test_notes" type="VARCHAR(255)"/>
+            <column name="annual_cathodic_protection_test_required" type="BOOLEAN"/>
+            <column name="annual_cathodic_protection_test_date" type="BIGINT"/>
+            <column name="next_annual_cathodic_protection_test_date" type="BIGINT"/>
+            <column name="annual_cathodic_protection_test_notes" type="VARCHAR(255)"/>
+            <column name="overfill_alarm_inspection_required" type="BOOLEAN"/>
+            <column name="last_overfill_alarm_inspection_date" type="BIGINT"/>
+            <column name="next_overfill_alarm_inspection_date" type="BIGINT"/>
+            <column name="overfill_alarm_inspection_notes" type="VARCHAR(255)"/>
+            <column name="spill_prevention_test_required" type="BOOLEAN"/>
+            <column name="last_spill_prevention_test_date" type="BIGINT"/>
+            <column name="next_spill_prevention_test_date" type="BIGINT"/>
+            <column name="spill_prevention_test_notes" type="VARCHAR(255)"/>
+            <column name="leak_detection_required" type="BOOLEAN"/>
+            <column name="last_leak_detection_date" type="BIGINT"/>
+            <column name="next_leak_detection_date" type="BIGINT"/>
+            <column name="leak_detection_notes" type="VARCHAR(255)"/>
+            <column name="epa_permit" type="VARCHAR(255)"/>
+            <column name="cfr_40_280_required" type="BOOLEAN"/>
+            <column name="hydrostatic_testing_last_date" type="BIGINT"/>
+            <column name="hydrostatic_testing_next_date" type="BIGINT"/>
+            <column name="overfill_functionality_test_last_date" type="BIGINT"/>
+            <column name="overfill_functionality_test_next_date" type="BIGINT"/>
+            <column name="annual_walk_through_completed" type="BOOLEAN"/>
+            <column name="notes" type="VARCHAR(255)"/>
+            <column name="petroleum_storage_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage_agency"
+                                 baseColumnNames="petroleum_storage_id"
+                                 constraintName="fk_petroleum_storage_id_petroleum_bulk_storage_agency"
+                                 referencedTableName="petroleum_bulk_storage"
+                                 referencedColumnNames="petroleum_storage_id"/>
+    </changeSet>
+</databaseChangeLog>

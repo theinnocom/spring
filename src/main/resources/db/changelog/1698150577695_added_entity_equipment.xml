@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1698150577695" author="Vijayan">
+        <createTable tableName="equipment">
+            <column name="equipment_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="equipment_type" type="varchar(255)"/>
+            <column name="equipment_count" type="bigint"/>
+            <column name="building_id" type="bigint"/>
+            <column name="facility_id" type="bigint"/>
+            <column name="created_at" type="bigint"/>
+            <column name="updated_at" type="bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="equipment"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_equipment_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="equipment"
+                                 baseColumnNames="facility_id"
+                                 constraintName="fk_equipment_facility_id"
+                                 referencedTableName="facility"
+                                 referencedColumnNames="facility_id"/>
+    </changeSet>
+</databaseChangeLog>

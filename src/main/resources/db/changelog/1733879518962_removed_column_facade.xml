@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1733879518962" author="vijayan">
+        <renameColumn tableName="facade" oldColumnName="QEWI_signed_date" newColumnName="signed_date" columnDataType="BIGINT"/>
+        <addColumn tableName="facade">
+            <column name="next_cycle_filing_date" type="BIGINT"/>
+        </addColumn>
+
+        <addColumn tableName="job_filing_information">
+            <column name="building_id" type="BIGINT"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="job_filing_information"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_jobFiling_information_building"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+    </changeSet>
+</databaseChangeLog>

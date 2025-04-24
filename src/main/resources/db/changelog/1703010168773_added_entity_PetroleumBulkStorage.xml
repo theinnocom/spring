@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1702482807538" author="Vijayan">
+        <createTable tableName="petroleum_bulk_storage">
+            <column name="petroleum_storage_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unique_id" type="varchar(200)">
+                <constraints unique="true"/>
+            </column>
+            <column name="floor" type="varchar(100)"/>
+            <column name="location" type="varchar(50)"/>
+            <column name="landmark" type="varchar(200)"/>
+            <column name="device_type" type="varchar(200)"/>
+            <column name="disconnected_on" type="varchar(255)"/>
+            <column name="management_note" type="varchar(200)"/>
+            <column name="management" type="varchar(200)"/>
+            <column name="model" type="varchar(200)"/>
+            <column name="capacity" type="varchar(100)"/>
+            <column name="make_by" type="varchar(255)"/>
+            <column name="serial_no" type="varchar(60)"/>
+            <column name="installed_by" type="varchar(50)"/>
+            <column name="installed_on" type="bigint"/>
+            <column name="managed_by" type="varchar(100)"/>
+            <column name="is_active" type="boolean" defaultValue="true"/>
+            <column name="building_id" type="bigint"/>
+            <column name="job_filing_information_id" type="bigint"/>
+            <column name="tank_closed_date" type="bigint"/>
+            <column name="pbs_number" type="varchar(200)"/>
+            <column name="tank_number" type="varchar(200)"/>
+            <column name="tank_location_id" type="bigint"/>
+            <column name="category" type="varchar(255)"/>
+            <column name="tank_capacity" type="double"/>
+            <column name="product_stored_id" type="bigint"/>
+            <column name="tank_type_id" type="bigint"/>
+            <column name="tank_internal_protection_id" type="bigint"/>
+            <column name="tank_external_protection_id" type="bigint"/>
+            <column name="tank_secondary_containment_id" type="bigint"/>
+            <column name="tank_leak_detection_id" type="bigint"/>
+            <column name="over_fill_protection_id" type="bigint"/>
+            <column name="secondary_overfill" type="varchar(200)"/>
+            <column name="spill_prevention_id" type="bigint"/>
+            <column name="dispenser_id" type="bigint"/>
+            <column name="pipe_location_id" type="bigint"/>
+            <column name="pipe_type_id" type="bigint"/>
+            <column name="pipe_external_protection_id" type="bigint"/>
+            <column name="piping_secondary_containment_id" type="bigint"/>
+            <column name="piping_leak_detection_id" type="bigint"/>
+            <column name="udc" type="varchar(255)"/>
+            <column name="tank_status_id" type="bigint"/>
+            <column name="subpart_id" type="bigint"/>
+            <column name="tank_internal_production_other_list" type="varchar(200)"/>
+            <column name="tank_external_production_other_list" type="varchar(200)"/>
+            <column name="tank_secondary_containment_other_list" type="varchar(200)"/>
+            <column name="tank_leak_detection_other_list" type="varchar(200)"/>
+            <column name="over_fill_protection_other_list" type="varchar(200)"/>
+            <column name="spill_prevention_other_list" type="varchar(200)"/>
+            <column name="pipe_type_other_list" type="varchar(200)"/>
+            <column name="piping_secondary_containment_other_list" type="varchar(200)"/>
+            <column name="piping_leak_detection_other_list" type="varchar(200)"/>
+
+        </createTable>
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_petroleum_bulk_storage_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="job_filing_information_id"
+                                 constraintName="fk_petroleum_bulk_storage_job_filing_information_id"
+                                 referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="tank_location_id"
+                                 constraintName="fk_petroleum_bulk_storage_tank_location_id"
+                                 referencedTableName="tank_location"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="product_stored_id"
+                                 constraintName="fk_petroleum_bulk_storage_product_stored_id"
+                                 referencedTableName="product_stored"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="tank_type_id"
+                                 constraintName="fk_petroleum_bulk_storage_tank_type_id"
+                                 referencedTableName="tank_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="tank_internal_protection_id"
+                                 constraintName="fk_petroleum_bulk_storage_tank_internal_protection_id"
+                                 referencedTableName="internal_protection"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="tank_external_protection_id"
+                                 constraintName="fk_petroleum_bulk_storage_tank_external_protection_id"
+                                 referencedTableName="external_protection"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="tank_secondary_containment_id"
+                                 constraintName="fk_petroleum_bulk_storage_tank_secondary_containment_id"
+                                 referencedTableName="tank_secondary_containment"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="tank_leak_detection_id"
+                                 constraintName="fk_petroleum_bulk_storage_tank_leak_detection_id"
+                                 referencedTableName="tank_leak_detection"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="over_fill_protection_id"
+                                 constraintName="fk_petroleum_bulk_storage_over_fill_protection_id"
+                                 referencedTableName="overfill_protection"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="spill_prevention_id"
+                                 constraintName="fk_petroleum_bulk_storage_spill_prevention_id"
+                                 referencedTableName="spill_prevention"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="dispenser_id"
+                                 constraintName="fk_petroleum_bulk_storage_dispenser_id"
+                                 referencedTableName="dispenser"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="pipe_location_id"
+                                 constraintName="fk_petroleum_bulk_storage_pipe_location_id"
+                                 referencedTableName="piping_location"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="pipe_type_id"
+                                 constraintName="fk_petroleum_bulk_storage_pipe_type_id"
+                                 referencedTableName="piping_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="pipe_external_protection_id"
+                                 constraintName="fk_petroleum_bulk_storage_pipe_external_protection_id"
+                                 referencedTableName="external_protection"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="piping_secondary_containment_id"
+                                 constraintName="fk_petroleum_bulk_storage_piping_secondary_containment_id"
+                                 referencedTableName="piping_secondary_containment"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="piping_leak_detection_id"
+                                 constraintName="fk_petroleum_bulk_storage_piping_leak_detection_id"
+                                 referencedTableName="pipe_leak_detection"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="tank_status_id"
+                                 constraintName="fk_petroleum_bulk_storage_tank_status_id"
+                                 referencedTableName="tank_status"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="petroleum_bulk_storage"
+                                 baseColumnNames="subpart_id"
+                                 constraintName="fk_petroleum_bulk_storage_subpart_id"
+                                 referencedTableName="subpart"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="22" author="Vijayan">
+        <createTable tableName="address">
+            <column name="address_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="address_details" type="varchar(60)"/>
+            <column name="alternative_address" type="varchar(60)"/>
+            <column name="optional_address" type="varchar(60)"/>
+            <column name="mobile_number" type="varchar(20)"/>
+            <column name="fax_number" type="varchar(20)"/>
+            <column name="city" type="varchar(50)"/>
+            <column name="state" type="varchar(50)"/>
+            <column name="county" type="varchar(50)"/>
+            <column name="zipcode" type="varchar(10)"/>
+            <column name="created_at" type="bigint"/>
+            <column name="borough_id" type="bigint"/>
+            <column name="updated_at" type="bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="address"
+                                 baseColumnNames="borough_id"
+                                 constraintName="fk_address_borough_id"
+                                 referencedTableName="borough"
+                                 referencedColumnNames="borough_id"/>
+    </changeSet>
+</databaseChangeLog>

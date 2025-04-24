@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1691582224524" author="Vijayan">
+        <addForeignKeyConstraint baseTableName="boiler"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_boiler_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="air_conditioning_unit"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_air_conditioning_unit_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="absorber_chiller"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_absorber_chiller_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="cogen_engine_turbine"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_cogen_engine_turbine_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="generator"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_generator_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="incinerator_crematories"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_incinerator_crematories_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="printing_press"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_printing_press_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="stack"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_stack_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1721676335373" author="vijayan">
+        <createTable tableName="eto_agency_info">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dep_number" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="issue_date" type="BIGINT">
+            </column>
+            <column name="expiration_date" type="BIGINT">
+            </column>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="note" type="TEXT"/>
+            <column name="dec_permit_obtained" type="VARCHAR(255)">
+            </column>
+            <column name="stack_test_required" type="VARCHAR(255)">
+            </column>
+            <column name="stack_test_date" type="BIGINT"/>
+            <column name="test_conducted_by" type="VARCHAR(255)"/>
+            <column name="stack_test_protocol_submitted" type="VARCHAR(255)"/>
+            <column name="eto_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="eto_agency_info"
+                                 baseColumnNames="eto_id"
+                                 constraintName="fk_eto_agency_info"
+                                 referencedTableName="eto"
+                                 referencedColumnNames="ETO_id"/>
+    </changeSet>
+</databaseChangeLog>

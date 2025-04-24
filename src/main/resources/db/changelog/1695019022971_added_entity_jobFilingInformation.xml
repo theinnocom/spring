@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1695019022971" author="Vijayan">
+        <createTable tableName="job_filing_information">
+            <column name="job_filing_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="job_number" type="varchar(100)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="description" type="varchar(50)"/>
+            <column name="approval_date" type="bigint"/>
+            <column name="sign_off_date" type="bigint"/>
+            <column name="equipment_name" type="varchar(50)"/>
+            <column name="type" type="varchar(200)"/>
+            <column name="status" type="varchar(100)"/>
+            <column name="commands" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

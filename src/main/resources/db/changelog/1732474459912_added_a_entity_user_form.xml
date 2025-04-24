@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1732474459912" author="vijayan">
+        <renameColumn tableName="user" oldColumnName="user_name" newColumnName="login_id" columnDataType="varchar(255)"/>
+        <addColumn tableName="user">
+            <column name="registration" type="varchar(255)"/>
+            <column name="proposal" type="BOOLEAN"/>
+            <column name="subscription_id" type="BIGINT"/>
+        </addColumn>
+        
+        <addColumn tableName="user_facility_relation">
+            <column name="equipment_name_id" type="bigint"/>
+        </addColumn>
+        
+        <createTable tableName="subscription">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+        </createTable>
+
+        <loadData tableName="subscription"
+                  file="db/changelog/data/subscription.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(200)"/>
+        </loadData>
+
+        <createTable tableName="equipment_name_type">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+        </createTable>
+
+        <loadData tableName="equipment_name_type"
+                  file="db/changelog/data/equipment_name_type.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(200)"/>
+        </loadData>
+
+        <addForeignKeyConstraint baseTableName="user"
+                                 baseColumnNames="subscription_id"
+                                 constraintName="fk_user_subscription_id"
+                                 referencedTableName="subscription"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="user_facility_relation"
+                                 baseColumnNames="equipment_name_id"
+                                 constraintName="fk_user_facility_relation_equipment_name_id"
+                                 referencedTableName="equipment_name_type"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

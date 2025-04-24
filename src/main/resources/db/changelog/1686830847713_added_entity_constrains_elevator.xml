@@ -1,0 +1,45 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1695019074238" author="Vijayan">
+        <addForeignKeyConstraint baseColumnNames="installed_by"
+                                 baseTableName="elevator"
+                                 constraintName="fk_elevator__installed_by_user_id"
+                                 referencedColumnNames="user_id"
+                                 referencedTableName="user"/>
+
+        <addForeignKeyConstraint baseColumnNames="elevator_status_id"
+                                 baseTableName="elevator"
+                                 constraintName="fk_elevator__elevator_status_id"
+                                 referencedColumnNames="status_id"
+                                 referencedTableName="elevator_status"/>
+
+        <addForeignKeyConstraint baseColumnNames="job_filing_information_id"
+                                 baseTableName="elevator"
+                                 constraintName="fk_elevator__job_filing_information_id"
+                                 referencedColumnNames="job_filing_id"
+                                 referencedTableName="job_filing_information"/>
+
+        <addForeignKeyConstraint baseColumnNames="created_by"
+                                 baseTableName="elevator"
+                                 constraintName="fk_elevator__created_by_user_id"
+                                 referencedColumnNames="user_id"
+                                 referencedTableName="user"/>
+
+        <addForeignKeyConstraint baseColumnNames="updated_by"
+                                 baseTableName="elevator"
+                                 constraintName="fk_elevator__updated_by_user_id"
+                                 referencedColumnNames="user_id"
+                                 referencedTableName="user"/>
+
+        <addForeignKeyConstraint baseTableName="elevator"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_elevator_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+    </changeSet>
+
+</databaseChangeLog>

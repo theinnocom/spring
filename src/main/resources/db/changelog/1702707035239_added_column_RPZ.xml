@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1702707035239" author="Vijayan">
+        <addColumn tableName="rpz">
+            <column name="management" type="varchar(200)"/>
+            <column name="landmark" type="varchar(100)"/>
+            <column name="device_type" type="varchar(200)"/>
+            <column name="disconnected_on" type="varchar(255)"/>
+            <column name="management_note" type="varchar(200)"/>
+            <column name="capacity" type="varchar(200)"/>
+            <column name="model" type="varchar(200)"/>
+            <column name="unique_id" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="line_pressure" type="double"/>
+            <column name="meter_reading" type="varchar(200)"/>
+            <column name="size" type="varchar(100)"/>
+            <column name="type_of_rpz_id" type="bigint"/>
+            <column name="type_of_service" type="varchar(200)"/>
+            <column name="water_reading_number" type="varchar(200)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

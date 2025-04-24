@@ -1,0 +1,14 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="15" author="Vijayan">
+        <addForeignKeyConstraint baseColumnNames="approved_by"
+                                 baseTableName="enquire_form"
+                                 constraintName="fk_user__approved_by"
+                                 referencedColumnNames="user_id"
+                                 referencedTableName="user"/>
+    </changeSet>
+
+</databaseChangeLog>

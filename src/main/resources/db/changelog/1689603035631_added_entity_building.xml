@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="32" author="Vijayan">
+        <createTable tableName="building">
+            <column name="building_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="building_name" type="varchar(100)"/>
+            <column name="dob_bin" type="varchar(50)">
+                <constraints unique="true"/>
+            </column>
+            <column name="lot_number" type="bigint"/>
+            <column name="block_number" type="bigint"/>
+            <column name="height_in_feet" type="bigint"/>
+            <column name="no_of_stories" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_id" type="bigint"/>
+            <column name="certificate_availability" type="varchar(50)"/>
+            <column name="certificate_number" type="varchar(100)">
+                <constraints unique="true"/>
+            </column>
+            <column name="occupancy_classification" type="varchar(100)"/>
+            <column name="construction_classification" type="varchar(100)"/>
+            <column name="job_filing_information_id" type="bigint"/>
+            <column name="comments" type="varchar(200)"/>
+            <column name="is_active" type="boolean" defaultValue="true"/>
+            <column name="facility_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

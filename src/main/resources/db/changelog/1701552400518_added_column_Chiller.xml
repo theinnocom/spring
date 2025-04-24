@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1701552400518" author="Vijayan">
+
+        <addColumn tableName="absorber_chiller">
+            <column name="model" type="varchar(200)"/>
+            <column name="capacity" type="varchar(100)"/>
+            <column name="chiller_type" type="varchar(200)"/>
+            <column name="EUP_card_available" type="varchar(255)"/>
+            <column name="inspector" type="varchar(200)"/>
+            <column name="FDNY_inspection_date" type="bigint"/>
+            <column name="inspection_date" type="bigint"/>
+            <column name="chiller_group_id" type="bigint"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="absorber_chiller"
+                                 baseColumnNames="chiller_group_id"
+                                 constraintName="fk_absorber_chiller_chiller_group_id"
+                                 referencedTableName="chiller_group"
+                                 referencedColumnNames="chiller_group_id"/>
+    </changeSet>
+</databaseChangeLog>

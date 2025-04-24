@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1714386441083" author="vijayan">
+        <renameColumn tableName="stack" oldColumnName="make_by" newColumnName="make" columnDataType="varchar(255)"/>
+        <addColumn tableName="stack">
+            <column name="device_type" type="varchar(255)"/>
+            <column name="status" type="varchar(255)"/>
+            <column name="unique_id" type="varchar(255)"/>
+            <column name="management_note" type="varchar(255)"/>
+            <column name="landmark" type="varchar(255)"/>
+            <column name="disconnected_on" type="bigint"/>
+            <column name="management_id" type="bigint"/>
+            <column name="application_id" type="varchar(255)"/>
+            <column name="height_feet" type="double"/>
+            <column name="diameter_inches" type="double"/>
+            <column name="number_of_equipments_connected" type="bigint"/>
+            <column name="total_capacity_of_equipments" type="double"/>
+            <column name="is_oil_fuel" type="boolean"/>
+            <column name="is_gas_fuel" type="boolean"/>
+            <column name="flow_rate" type="double"/>
+            <column name="exhaust_temperature" type="double"/>
+            <column name="velocity" type="double"/>
+            <column name="note" type="varchar(255)"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="stack"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_stack_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1729005628829" author="vijayan">
+        <createTable tableName="incinerator_fuel_consumption">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="year" type="bigint"/>
+            <column name="january" type="decimal"/>
+            <column name="february" type="decimal"/>
+            <column name="march" type="decimal"/>
+            <column name="april" type="decimal"/>
+            <column name="may" type="decimal"/>
+            <column name="june" type="decimal"/>
+            <column name="july" type="decimal"/>
+            <column name="august" type="decimal"/>
+            <column name="september" type="decimal"/>
+            <column name="october" type="decimal"/>
+            <column name="november" type="decimal"/>
+            <column name="december" type="decimal"/>
+            <column name="total" type="decimal"/>
+            <column name="incinerator_id" type="bigint"/>
+            <column name="created_at" type="bigint"/>
+            <column name="updated_at" type="bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="incinerator_fuel_consumption"
+                                 baseColumnNames="incinerator_id"
+                                 constraintName="fk_incinerator_fuel_consumption_incinerator"
+                                 referencedTableName="incinerator_crematories"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

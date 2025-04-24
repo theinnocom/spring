@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1701702733688" author="Vijayan">
+        <createTable tableName="type_of_chiller">
+            <column name="chiller_type_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(100)"/>
+        </createTable>
+
+        <loadData tableName="type_of_chiller"
+                  file="db/changelog/data/type_of_chiller_data.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="chiller_type_id" type="bigint"/>
+            <column name="type" type="varchar(100)"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

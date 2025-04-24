@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1715108352023" author="Vijayan">
+        <addColumn tableName="boiler">
+            <column name="status_id" type="bigint"/>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="boiler"
+                                 constraintName="fk_boiler_status_id"
+                                 referencedColumnNames="status_id"
+                                 referencedTableName="elevator_status"/>
+    </changeSet>
+</databaseChangeLog>

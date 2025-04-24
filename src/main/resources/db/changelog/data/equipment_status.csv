@@ -1,0 +1,8 @@
+status_id;status_name
+1;In-service
+2;Out of service
+3;Closed Remove
+4;Closed-In place
+5;cancelled
+6;Converted to Non-Regulated Use
+7;Temporarily out of service

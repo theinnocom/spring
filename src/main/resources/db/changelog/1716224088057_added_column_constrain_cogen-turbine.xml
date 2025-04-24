@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1716224088057" author="vijayan">
+
+        <modifyDataType tableName="cogen_engine_turbine" columnName="number_of_identical_units" newDataType="bigint"/>
+        <renameColumn tableName="cogen_engine_turbine" oldColumnName="secondary_fuel" newColumnName="secondary_fuel_id" columnDataType="bigint"/>
+        <renameColumn tableName="cogen_engine_turbine" oldColumnName="primary_fuel" newColumnName="primary_fuel_id" columnDataType="bigint"/>
+
+        <addForeignKeyConstraint baseColumnNames="secondary_fuel_id"
+                                 baseTableName="cogen_engine_turbine"
+                                 constraintName="fk_cogen_engine_turbine_secondary_fuel_id"
+                                 referencedColumnNames="fuel_type_id"
+                                 referencedTableName="fuel_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="primary_fuel_id"
+                                 baseTableName="cogen_engine_turbine"
+                                 constraintName="fk_cogen_engine_turbine_primary_fuel_id"
+                                 referencedColumnNames="fuel_type_id"
+                                 referencedTableName="fuel_type"/>
+
+    </changeSet>
+</databaseChangeLog>

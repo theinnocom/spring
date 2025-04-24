@@ -1,7 +1,7 @@
 package com.inTrack.spring.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.inTrack.spring.dto.common.ResponseDTO;
+import com.inTrack.spring.dto.responseDTO.ResponseDTO;
 import com.inTrack.spring.store.ApplicationMessageStore;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

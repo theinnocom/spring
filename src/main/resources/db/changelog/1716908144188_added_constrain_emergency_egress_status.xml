@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1716908144188" author="Vijayan">
+        <addColumn tableName="emergency_egress_and_lighting">
+            <column name="status_id" type="bigint"/>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="emergency_egress_and_lighting"
+                                 constraintName="fk_emergency_egress_and_lighting_status_id"
+                                 referencedColumnNames="status_id"
+                                 referencedTableName="elevator_status"/>
+
+        <addColumn tableName="bulk_oxygen_storage">
+            <column name="application_id" type="varchar(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="status_id" type="bigint"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="bulk_oxygen_storage"
+                                 constraintName="fk_bulk_oxygen_storage_status_id"
+                                 referencedColumnNames="status_id"
+                                 referencedTableName="elevator_status"/>
+
+        <addColumn tableName="incinerator_crematories">
+            <column name="status_id" type="bigint"/>
+        </addColumn>
+        <dropColumn tableName="incinerator_crematories" columnName="status"/>
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="incinerator_crematories"
+                                 constraintName="fk_incinerator_crematories_status_id"
+                                 referencedColumnNames="status_id"
+                                 referencedTableName="elevator_status"/>
+
+    </changeSet>
+</databaseChangeLog>

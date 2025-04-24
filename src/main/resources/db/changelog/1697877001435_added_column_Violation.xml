@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1697877001435" author="Vijayan">
+        <addColumn tableName="violation">
+            <column name="hearing_attended" type="Boolean" defaultValue="false"/>
+            <column name="fine_paid" type="Boolean" defaultValue="false"/>
+            <column name="waived" type="Boolean" defaultValue="false"/>
+            <column name="dismissed" type="Boolean" defaultValue="false"/>
+            <column name="status_comments" type="varchar(255)"/>
+            <column name="certificate_of_correction_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

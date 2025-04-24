@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1695019067838" author="Vijayan">
+        <createTable tableName="elevator">
+            <column name="elevator_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="building_id" type="bigint"/>
+            <column name="unique_id" type="varchar(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="installed_on" type="bigint"/>
+            <column name="installed_by" type="bigint"/>
+            <column name="elevator_status_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_of_use" type="varchar(255)"/>
+            <column name="floor" type="bigint"/>
+            <column name="floor_from" type="bigint"/>
+            <column name="floor_to" type="bigint"/>
+            <column name="location" type="varchar(300)"/>
+            <column name="landmark" type="varchar(300)"/>
+            <column name="safety_type" type="varchar(255)"/>
+            <column name="management_type" type="varchar(200)"/>
+            <column name="managed_by" type="varchar(255)"/>
+            <column name="make" type="varchar(255)"/>
+            <column name="model" type="varchar(255)"/>
+            <column name="capacity" type="varchar(300)"/>
+            <column name="serial" type="bigint"/>
+            <column name="governor_type" type="varchar(200)"/>
+            <column name="machine_type" type="varchar(255)"/>
+            <column name="mode_of_operation" type="varchar(300)"/>
+            <column name="phone_inspection" type="varchar(100)"/>
+            <column name="job_filing_information_id" type="bigint"/>
+            <column name="comments" type="varchar(255)"/>
+            <column name="is_active" type="boolean" defaultValue="true"/>
+            <column name="elevator_job_no" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="disconnected_on" type="bigint"/>
+            <column name="device_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_by" type="bigint"/>
+            <column name="created_at" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="bigint"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

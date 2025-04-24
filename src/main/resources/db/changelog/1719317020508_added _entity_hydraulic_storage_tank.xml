@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1719317020508" author="vijayan">
+
+        <createTable tableName="hydraulic_storage_tank_usage">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+        </createTable>
+
+        <loadData tableName="hydraulic_storage_tank_usage"
+                  file="db/changelog/data/hydraulic_storage_tank_usage.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(200)"/>
+        </loadData>
+
+
+        <createTable tableName="hydraulic_storage_tank">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unique_id" type="VARCHAR(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="status_id" type="BIGINT"/>
+            <column name="floor" type="BIGINT"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="landmark" type="VARCHAR(255)"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="installed_on" type="BIGINT"/>
+            <column name="installed_by" type="VARCHAR(255)"/>
+            <column name="management" type="VARCHAR(255)">
+            </column>
+            <column name="managed_by" type="VARCHAR(255)">
+            </column>
+            <column name="management_note" type="VARCHAR(255)">
+            </column>
+            <column name="disconnected_on" type="BIGINT"/>
+            <column name="usage_id" type="BIGINT">
+            </column>
+            <column name="secondary_containment" type="BOOLEAN" defaultValue="false">
+            </column>
+            <column name="agency_approval_required" type="BOOLEAN" defaultValue="false">
+            </column>
+            <column name="tank_number" type="VARCHAR(255)"/>
+            <column name="spill_kit_available" type="BOOLEAN" defaultValue="false">
+            </column>
+            <column name="comments" type="VARCHAR(255)"/>
+            <column name="created_at" type="BIGINT"/>
+            <column name="updated_at" type="BIGINT"/>
+            <column name="building_id" type="BIGINT"/>
+            <column name="job_filing_information_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="hydraulic_storage_tank"
+                                 baseColumnNames="status_id"
+                                 constraintName="fk_hydraulic_storage_tank_elevator_status"
+                                 referencedTableName="elevator_status"
+                                 referencedColumnNames="status_id"/>
+
+        <addForeignKeyConstraint baseTableName="hydraulic_storage_tank"
+                                 baseColumnNames="usage_id"
+                                 constraintName="fk_hydraulic_storage_tank_usage"
+                                 referencedTableName="hydraulic_storage_tank_usage"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="hydraulic_storage_tank"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_hydraulic_storage_tank_building"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="hydraulic_storage_tank"
+                                 baseColumnNames="job_filing_information_id"
+                                 constraintName="fk_hydraulic_storage_tank_job_filing_information"
+                                 referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+    </changeSet>
+</databaseChangeLog>

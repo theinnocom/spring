@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1728318889367" author="vijayan">
+        <addColumn tableName="miscellaneous">
+            <column name="agency_id" type="varchar(255)">
+            </column>
+            <column name="issue_date" type="bigint">
+            </column>
+            <column name="agency_status" type="varchar(255)">
+            </column>
+            <column name="expiration_date" type="bigint">
+            </column>
+            <column name="submitted_date" type="bigint">
+            </column>
+            <column name="agency_name_id" type="bigint">
+            </column>
+            <column name="agency_note" type="varchar(255)">
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="miscellaneous"
+                                 baseColumnNames="agency_name_id"
+                                 constraintName="fk_miscellaneous_agency_name_id"
+                                 referencedTableName="agency_type"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1721773336059" author="vijayan">
+        <createTable tableName="generator_agency_info">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="issue_date" type="BIGINT" />
+            <column name="expiration_date" type="BIGINT" />
+            <column name="status" type="VARCHAR(255)" />
+            <column name="submitted_date" type="BIGINT" />
+            <column name="note" type="VARCHAR(255)" />
+            <column name="qualifies_for_dr_program" type="BOOLEAN" />
+            <column name="stack_last_test_date" type="BIGINT" />
+            <column name="stack_next_test_date" type="BIGINT" />
+            <column name="nox_level" type="VARCHAR(255)" />
+            <column name="unit_type" type="VARCHAR(255)" />
+            <column name="test_conducted_by" type="VARCHAR(255)" />
+            <column name="other_generator_combined" type="BOOLEAN" />
+            <column name="combined_generator" type="VARCHAR(255)" />
+            <column name="protocol_submitted_to_dec" type="BOOLEAN" />
+            <column name="qualifies_for_doe" type="BOOLEAN" />
+            <column name="registered_with_doe" type="BOOLEAN" />
+            <column name="renewed_with_doe" type="BOOLEAN" />
+            <column name="generator_id" type="BIGINT">
+            </column>
+            <column name="generator_agency_id" type="BIGINT">
+            </column>
+        </createTable>
+
+        <createTable tableName="generator_agency">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)"/>
+        </createTable>
+
+        <loadData tableName="generator_agency"
+                  file="db/changelog/data/generator_agency.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(255)"/>
+        </loadData>
+
+        <addForeignKeyConstraint
+                baseColumnNames="generator_id"
+                baseTableName="generator_agency_info"
+                constraintName="fk_generator_agency_info_generator"
+                referencedColumnNames="generator_id"
+                referencedTableName="generator" />
+
+        <addForeignKeyConstraint
+                baseColumnNames="generator_agency_id"
+                baseTableName="generator_agency_info"
+                constraintName="fk_generator_agency_info_generator_agency"
+                referencedColumnNames="id"
+                referencedTableName="generator_agency" />
+    </changeSet>
+</databaseChangeLog>

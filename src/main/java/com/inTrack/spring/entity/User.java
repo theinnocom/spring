@@ -33,14 +33,17 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false, unique = true, length = 200)
     private String password;
 
-    @Column(name = "user_name", unique = true, length = 200)
-    private String userName;
+    @Column(name = "login_id", unique = true, length = 200)
+    private String loginId;
+
+    @Column(name = "designation")
+    private String designation;
 
     @Column(name = "delete_permission", nullable = false)
     private Boolean deletePermission = false;
 
     @Column(name = "is_profile_active", nullable = false)
-    private Boolean isProfileActive;
+    private Boolean isProfileActive = false;
 
     @Column(name = "expiry_date")
     private Long expiryDate;
@@ -53,6 +56,16 @@ public class User implements Serializable {
 
     @Column(name = "must_change_password", nullable = false)
     private Boolean mustChangePassword = true;
+
+    @Column(name = "registration")
+    private String registration;
+
+    @Column(name = "proposal")
+    private Boolean proposal;
+
+    @ManyToOne
+    @JoinColumn(name = "subscription_id")
+    private Subscription subscription;
 
     @Column(name = "created_at", nullable = false)
     private Long createdAt;

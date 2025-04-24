@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="19" author="Vijayan">
+        <createTable tableName="facility">
+            <column name="facility_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="active" type="boolean" defaultValue="false"/>
+            <column name="client_name" type="varchar(100)"/>
+            <column name="gross_square_feet" type="bigint"/>
+            <column name="permit_expiration_date" type="bigint"/>
+            <column name="facility_in_charge" type="varchar(255)"/>
+            <column name="permit_id" type="varchar(100)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="address_id" type="bigint"/>
+            <column name="fuel_capping" type="boolean"/>
+            <column name="number_of_buildings" type="bigint"/>
+            <column name="permit_type_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="bigint"/>
+            <column name="updated_at" type="bigint"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

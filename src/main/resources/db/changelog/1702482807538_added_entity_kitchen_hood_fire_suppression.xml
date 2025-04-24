@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1703089382766" author="Vijayan">
+        <createTable tableName="kitchen_hood_fire_suppression">
+            <column name="kitchen_hood_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unique_id" type="varchar(200)">
+                <constraints unique="true" />
+            </column>
+            <column name="floor" type="varchar(100)"/>
+            <column name="location" type="varchar(50)"/>
+            <column name="landmark" type="varchar(200)"/>
+            <column name="device_type" type="varchar(200)"/>
+            <column name="disconnected_on" type="varchar(255)"/>
+            <column name="management_note" type="varchar(200)"/>
+            <column name="management" type="varchar(200)"/>
+            <column name="model" type="varchar(200)"/>
+            <column name="capacity" type="varchar(100)"/>
+            <column name="make_by" type="varchar(255)"/>
+            <column name="serial_no" type="varchar(60)"/>
+            <column name="installed_by" type="varchar(50)"/>
+            <column name="installed_on" type="bigint"/>
+            <column name="managed_by" type="varchar(100)"/>
+            <column name="internal_management" type="varchar(100)"/>
+            <column name="regulatory_authority" type="varchar(100)"/>
+            <column name="permit_number" type="varchar(100)"/>
+            <column name="is_inspection_tag_attached" type="varchar(100)"/>
+            <column name="inspection_test_frequency" type="varchar(100)"/>
+            <column name="permit_date" type="bigint"/>
+            <column name="is_portable_fire_extinguisher" type="boolean"/>
+            <column name="is_active" type="boolean" defaultValue="true"/>
+            <column name="building_id" type="bigint"/>
+            <column name="type_of_suppression_id" type="bigint"/>
+            <column name="job_filing_information_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="kitchen_hood_fire_suppression"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_kitchen_hood_fire_suppression_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="kitchen_hood_fire_suppression"
+                                 baseColumnNames="job_filing_information_id"
+                                 constraintName="fk_kitchen_hood_fire_suppression_job_filing_information_id"
+                                 referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+
+        <addForeignKeyConstraint baseTableName="kitchen_hood_fire_suppression"
+                                 baseColumnNames="type_of_suppression_id"
+                                 constraintName="fk_kitchen_hood_fire_suppression_type_of_suppression_id"
+                                 referencedTableName="type_of_suppression"
+                                 referencedColumnNames="suppression_type_id"/>
+    </changeSet>
+</databaseChangeLog>

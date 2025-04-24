@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1733126872959" author="vijayan">
+        <renameColumn tableName="building" oldColumnName="dob_bin" newColumnName="bin_no" columnDataType="varchar(255)"/>
+        <renameColumn tableName="building" oldColumnName="comments" newColumnName="notes" columnDataType="varchar(255)"/>
+        <dropForeignKeyConstraint baseTableName="building" constraintName="fk_building_address_id"/>
+        <dropColumn tableName="building" columnName="address_id"/>
+        <dropColumn tableName="building" columnName="job_filing_information_id"/>
+        <addColumn tableName="building">
+            <column name="address_line" type="varchar(255)"/>
+            <column name="alter_address_line" type="varchar(255)"/>
+            <column name="city" type="varchar(255)"/>
+            <column name="state" type="varchar(255)"/>
+            <column name="zipcode" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

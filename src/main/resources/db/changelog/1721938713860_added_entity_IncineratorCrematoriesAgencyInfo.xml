@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1721938713860" author="vijayan">
+        <createTable tableName="incinerator_crematories_agency_info">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dep_number" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="issue_date" type="BIGINT">
+            </column>
+            <column name="expiration_date" type="BIGINT">
+            </column>
+            <column name="status" type="VARCHAR(255)">
+            </column>
+            <column name="dec_number" type="VARCHAR(255)">
+            </column>
+            <column name="dec_issue_date" type="BIGINT">
+            </column>
+            <column name="dec_expiration_date" type="BIGINT">
+            </column>
+            <column name="stack_last_test_date" type="BIGINT">
+            </column>
+            <column name="stack_next_test_date" type="BIGINT">
+            </column>
+            <column name="stack_test_protocol_submitted" type="BOOLEAN">
+            </column>
+            <column name="parameter_type_id" type="BIGINT">
+            </column>
+            <column name="stack_test_passed" type="BOOLEAN">
+            </column>
+            <column name="test_conducted_by" type="VARCHAR(255)">
+            </column>
+            <column name="note" type="VARCHAR(255)">
+            </column>
+            <column name="incinerator_crematories_agency_id" type="BIGINT"/>
+            <column name="incinerator_id" type="BIGINT"/>
+        </createTable>
+
+        <createTable tableName="parameter_type">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(100)"/>
+        </createTable>
+
+        <loadData tableName="parameter_type"
+                  file="db/changelog/data/parameter_type.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(100)"/>
+        </loadData>
+
+        <createTable tableName="incinerator_crematories_agency">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(100)"/>
+        </createTable>
+
+        <loadData tableName="incinerator_crematories_agency"
+                  file="db/changelog/data/incinerator_crematories_agency.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(100)"/>
+        </loadData>
+
+        <addForeignKeyConstraint baseTableName="incinerator_crematories_agency_info"
+                                 baseColumnNames="parameter_type_id"
+                                 constraintName="fk_parameter_type"
+                                 referencedTableName="parameter_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="incinerator_crematories_agency_info"
+                                 baseColumnNames="incinerator_crematories_agency_id"
+                                 constraintName="fk_incinerator_crematories_agency_id"
+                                 referencedTableName="incinerator_crematories_agency"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="incinerator_crematories_agency_info"
+                                 baseColumnNames="incinerator_id"
+                                 constraintName="fk_incinerator_crematories_id"
+                                 referencedTableName="incinerator_crematories"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1731334001634" author="vijayan">
+        <createTable tableName="general_equipment">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="column_name" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="column_type" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <loadData tableName="general_equipment"
+                  file="db/changelog/data/general_equipment.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="column_name" type="varchar(255)"/>
+            <column name="column_type" type="varchar(255)"/>
+        </loadData>
+
+        <createTable tableName="equipment_detail">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="column_name" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="column_type" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1716907521421" author="Vijayan">
+        <renameColumn tableName="kitchen_hood_fire_suppression" oldColumnName="make_by" newColumnName="make" columnDataType="varchar(255)"/>
+        <addColumn tableName="kitchen_hood_fire_suppression">
+            <column name="status_id" type="bigint"/>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="kitchen_hood_fire_suppression"
+                                 constraintName="fk_kitchen_hood_fire_suppression_status_id"
+                                 referencedColumnNames="status_id"
+                                 referencedTableName="elevator_status"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1722263545686" author="vijayan">
+        <addColumn tableName="incinerator_crematories_agency_info">
+            <column name="is_solid_waste_permit_required" type="boolean"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

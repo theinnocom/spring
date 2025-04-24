@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1720955800186" author="Vijayan">
+        <renameColumn tableName="printing_press" oldColumnName="make_by" newColumnName="make" columnDataType="VARCHAR(255)"/>
+        <addColumn tableName="printing_press">
+            <column name="total_voc" type="DOUBLE">
+            </column>
+            <column name="stack_exhaust_search_button" type="VARCHAR(255)">
+            </column>
+            <column name="stack_exhaust_height" type="DOUBLE">
+            </column>
+            <column name="stack_exhaust_diameter" type="DOUBLE">
+            </column>
+            <column name="stack_exhaust_velocity" type="DOUBLE">
+            </column>
+            <column name="filter_used_type" type="VARCHAR(255)">
+            </column>
+            <column name="efficiency_percentage" type="DOUBLE">
+            </column>
+            <column name="ink_or_solvent_usage_cap" type="BOOLEAN">
+            </column>
+            <column name="permitted_max_voc" type="DOUBLE"/>
+            <column name="status_id" type="bigint"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="printing_press"
+                                 baseColumnNames="status_id"
+                                 referencedTableName="elevator_status"
+                                 referencedColumnNames="status_id"
+                                 constraintName="fk_printing_press_elevator_status"/>
+
+        <createTable tableName="printing_press_detail">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+            </column>
+            <column name="volume" type="VARCHAR(255)">
+            </column>
+            <column name="density" type="VARCHAR(255)">
+            </column>
+            <column name="voc_wt" type="VARCHAR(255)">
+            </column>
+            <column name="voc_lb" type="VARCHAR(255)">
+            </column>
+            <column name="printing_press_id" type="BIGINT">
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseColumnNames="printing_press_id"
+                baseTableName="printing_press_detail"
+                constraintName="fk_printing_press_detail_printing_press"
+                referencedColumnNames="printer_id"
+                referencedTableName="printing_press"/>
+
+    </changeSet>
+</databaseChangeLog>

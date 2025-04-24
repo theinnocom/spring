@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="24" author="Vijayan">
+        <loadData tableName="permit_type"
+                  file="db/changelog/data/facility_type.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="permit_type_id" type="bigint"/>
+            <column name="type_name" type="varchar(200)"/>
+            <column name="created_at" type="bigint"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

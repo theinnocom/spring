@@ -1,0 +1,16 @@
+id;type;is_cogen;is_fire_alarm;is_fume_hood;is_paint_spray_booth;is_boiler;is_kitchen;is_rpz;is_hydraulic;is_portable;is_elevator;is_emergency;is_land_fill;is_printing_press
+1;DEP Permit;true;false;false;true;true;false;false;false;false;false;false;true;true
+2;DOB Inspection;true;false;false;false;true;false;false;false;false;true;false;false;false
+3;FD Approval;true;true;false;false;true;false;false;false;false;false;false;false;false
+4;Annual Tune-up;false;false;false;false;true;false;false;false;false;false;false;false;false
+5;Pressure Value Test;false;false;false;false;true;false;false;false;false;false;false;false;false
+6;Maintenance;false;true;false;false;false;false;false;false;false;false;false;false;false
+7;DEC permit;false;false;false;false;false;false;false;false;false;false;false;false;false
+8;Annual inspection;false;false;true;false;false;true;false;false;false;false;true;false;false
+9;Monthly inspection;false;false;true;false;false;false;false;false;false;false;false;false;false
+10;State permit;false;false;false;true;false;false;false;false;false;false;false;false;false
+11;FD Permit;false;false;false;false;false;true;false;false;false;false;false;false;false
+12;DOH Inspection;false;false;false;false;false;false;true;false;false;false;false;false;false
+13;DEP Inspection;false;false;false;false;false;false;true;false;false;false;false;false;false
+14;DEC Approval;false;false;false;false;false;false;false;true;false;false;false;false;false
+15;Hydrostatic Pressure Test;false;false;false;false;false;false;false;false;true;false;false;false;false

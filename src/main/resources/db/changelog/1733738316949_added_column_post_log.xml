@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1733738316949" author="vijayan">
+        <addColumn tableName="post_log">
+            <column name="annual_log_inspected" type="BOOLEAN">
+            </column>
+            <column name="last_inspection_date" type="BIGINT">
+            </column>
+            <column name="next_inspection_date" type="BIGINT">
+            </column>
+            <column name="inspected_by" type="VARCHAR(255)">
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

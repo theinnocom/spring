@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1729174183766" author="vijayan">
+
+        <dropColumn tableName="eto" columnName="gas_mixture_type"/>
+        <addColumn tableName="eto">
+            <column name="gas_mixture_type_id" type="bigint"/>
+        </addColumn>
+
+        <createTable tableName="gas_mixture_type">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="varchar(255)"/>
+        </createTable>
+
+        <loadData tableName="gas_mixture_type"
+                  file="db/changelog/data/gas_mixture_type.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(255)"/>
+        </loadData>
+
+        <addForeignKeyConstraint baseTableName="eto"
+                                 baseColumnNames="gas_mixture_type_id"
+                                 constraintName="fk_eto_gas_mixture_type_id"
+                                 referencedTableName="gas_mixture_type"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

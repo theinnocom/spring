@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1733735042602" author="vijayan">
+        <createTable tableName="der_staff_certification">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="staff_name" type="VARCHAR(255)">
+            </column>
+            <column name="issue_date" type="BIGINT">
+            </column>
+            <column name="authorization_number" type="VARCHAR(255)">
+            </column>
+            <column name="certification_available" type="BOOLEAN">
+            </column>
+            <column name="note" type="varchar(255)">
+            </column>
+            <column name="certificate_type_id" type="BIGINT">
+            </column>
+            <column name="spcc_id" type="BIGINT">
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="der_staff_certification"
+                baseColumnNames="certificate_type_id"
+                constraintName="fk_der_certification_certificate_type"
+                referencedTableName="certificate_type"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                baseTableName="der_staff_certification"
+                baseColumnNames="spcc_id"
+                constraintName="fk_der_certification_spcc"
+                referencedTableName="spcc"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

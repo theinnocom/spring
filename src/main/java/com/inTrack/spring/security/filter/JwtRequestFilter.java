@@ -1,7 +1,6 @@
 package com.inTrack.spring.security.filter;
 
 
-
 import com.inTrack.spring.security.CustomUserDetailsService;
 import com.inTrack.spring.security.JwtTokenUtil;
 import io.jsonwebtoken.ExpiredJwtException;

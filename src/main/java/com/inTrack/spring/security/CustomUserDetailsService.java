@@ -39,12 +39,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) {
-        if (username == null) {
+            if (username == null) {
             throw new SecurityError("Invalid user name");
         }
-        final User user = this.userRepository.findByEmailOrUserName(username.toUpperCase(), username.toUpperCase());
+        final User user = this.userRepository.findByEmailOrLoginId(username.toUpperCase(), username.toUpperCase());
         if (user == null) {
-            throw new SecurityError("Username does not exist");
+            throw new SecurityError("Email does not exist");
         }
         if (!user.getIsProfileActive()) {
             throw new ValidationError(ApplicationMessageStore.USER_NOT_VERIFIED);

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1728729036671" author="vijayan">
+        <createTable tableName="ac_agency_details">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="agency_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fdny_inspection_date" type="BIGINT"/>
+            <column name="fdny_inspected_by" type="VARCHAR(255)"/>
+            <column name="fdny_note" type="varchar(255)"/>
+            <column name="eup_card_available" type="BOOLEAN"/>
+            <column name="eup_inspection_date" type="BIGINT"/>
+            <column name="eup_next_inspection_date" type="BIGINT"/>
+            <column name="eup_note" type="varchar(255)"/>
+            <column name="epa_submitted_date" type="BIGINT"/>
+            <column name="is_epa_refrigeration_recovery_registered" type="BOOLEAN"/>
+            <column name="epa_approval_date" type="BIGINT"/>
+            <column name="epa_note" type="varchar(255)"/>
+            <column name="ac_unit_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Add foreign key constraint to ac_unit_id -->
+        <addForeignKeyConstraint
+                baseTableName="ac_agency_details"
+                baseColumnNames="ac_unit_id"
+                referencedTableName="air_conditioning_unit"
+                referencedColumnNames="ac_unit_id"
+                constraintName="fk_ac_unit_ac_agency"/>
+    </changeSet>
+</databaseChangeLog>

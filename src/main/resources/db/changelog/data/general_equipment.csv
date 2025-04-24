@@ -1,0 +1,12 @@
+id;column_name;column_type
+1;Unique Id;String
+2;Status;DropDown
+3;Floor;Number
+4;Location;String
+5;Landmark;String
+6;Installed On;Number
+7;Installed By;String
+8;Management;DropDown
+9;Managed By;String
+10;Management Note;String
+11;Disconnected On;Number

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1697653212345" author="Vijayan">
+        <createTable tableName="violation">
+            <column name="violation_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="issuing_agency" type="varchar(200)"/>
+            <column name="issued_date" type="bigint"/>
+            <column name="hearing_date" type="bigint"/>
+            <column name="respondent_name" type="varchar(200)"/>
+            <column name="code" type="varchar(200)"/>
+            <column name="code_section" type="varchar(200)"/>
+            <column name="description" type="varchar(200)"/>
+            <column name="penalty_imposed" type="varchar(200)"/>
+            <column name="paid_amount" type="decimal"/>
+            <column name="balance_due" type="decimal"/>
+            <column name="hearing_status" type="varchar(200)"/>
+            <column name="hearing_result" type="varchar(200)"/>
+            <column name="compliance_date" type="bigint"/>
+            <column name="note" type="varchar(200)"/>
+            <column name="created_at" type="bigint"/>
+            <column name="updated_at" type="bigint"/>
+            <column name="is_delete" type="Boolean" defaultValue="false"/>
+            <column name="deletion_expiration_date" type="bigint"/>
+            <column name="facility_id" type="bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="violation"
+                                 baseColumnNames="facility_id"
+                                 constraintName="fk_violation_facility_id"
+                                 referencedTableName="facility"
+                                 referencedColumnNames="facility_id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1716224969498" author="vijayan">
+
+        <renameColumn tableName="cogen_engine_turbine" oldColumnName="primary_use" newColumnName="primary_use_id" columnDataType="bigint"/>
+        <renameColumn tableName="cogen_engine_turbine" oldColumnName="type_of_control_efficiency" newColumnName="type_of_control_efficiency_id" columnDataType="bigint"/>
+
+        <createTable tableName="cogen_primary_use">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="type_of_control_efficiency">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="varchar(255)"/>
+        </createTable>
+
+        <loadData tableName="cogen_primary_use"
+                  file="db/changelog/data/cogen_primary_use.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(255)"/>
+        </loadData>
+
+        <loadData tableName="type_of_control_efficiency"
+                  file="db/changelog/data/type_of_control_efficiency.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(255)"/>
+        </loadData>
+
+        <addForeignKeyConstraint baseColumnNames="primary_use_id"
+                                 baseTableName="cogen_engine_turbine"
+                                 constraintName="fk_cogen_engine_turbine_primary_use_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cogen_primary_use"/>
+
+        <addForeignKeyConstraint baseColumnNames="type_of_control_efficiency_id"
+                                 baseTableName="cogen_engine_turbine"
+                                 constraintName="fk_cogen_engine_turbine_type_of_control_efficiency_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="type_of_control_efficiency"/>
+
+    </changeSet>
+</databaseChangeLog>

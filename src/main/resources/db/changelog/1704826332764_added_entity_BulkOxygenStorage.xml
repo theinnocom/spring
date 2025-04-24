@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1704828774627" author="Vijayan">
+        <createTable tableName="bulk_oxygen_storage">
+            <column name="oxygen_storage_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="floor" type="varchar(100)"/>
+            <column name="unique_id" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="location" type="varchar(50)"/>
+            <column name="landmark" type="varchar(50)"/>
+            <column name="make_by" type="varchar(255)"/>
+            <column name="serial_no" type="varchar(60)"/>
+            <column name="installed_by" type="varchar(50)"/>
+            <column name="installed_on" type="bigint"/>
+            <column name="managed_by" type="varchar(100)"/>
+            <column name="management_note" type="varchar(100)"/>
+            <column name="device_type" type="varchar(100)"/>
+            <column name="capacity" type="varchar(100)"/>
+            <column name="is_active" type="boolean" defaultValue="true"/>
+            <column name="building_id" type="bigint"/>
+            <column name="management_id" type="bigint"/>
+            <column name="disconnected_on" type="bigint"/>
+            <column name="job_filing_information_id" type="bigint"/>
+            <column name="fire_department_approval_obtained" type="BOOLEAN"/>
+            <column name="fire_department_approval_number" type="VARCHAR(255)"/>
+            <column name="pressure_test_performed" type="BOOLEAN"/>
+            <column name="last_test_date" type="BIGINT"/>
+            <column name="next_test_date" type="BIGINT"/>
+            <column name="note" type="VARCHAR(255)"/>
+            <column name="ees_job_number" type="VARCHAR(255)"/>
+            <column name="comments" type="VARCHAR(255)"/>
+            <column name="status_of_source_id" type="BIGINT"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="bulk_oxygen_storage"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_bulk_oxygen_storage_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="bulk_oxygen_storage"
+                                 baseColumnNames="job_filing_information_id"
+                                 constraintName="fk_bulk_oxygen_storage_job_filing_information_id"
+                                 referencedTableName="job_filing_information"
+                                 referencedColumnNames="job_filing_id"/>
+
+        <addForeignKeyConstraint baseTableName="bulk_oxygen_storage"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_bulk_oxygen_storage_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="bulk_oxygen_storage"
+                                 baseColumnNames="status_of_source_id"
+                                 constraintName="fk_bulk_oxygen_storage_status_of_source_id"
+                                 referencedTableName="status_of_source"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

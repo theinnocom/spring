@@ -94,7 +94,6 @@ public class ApplicationMessageStore {
     public static final String FACILITY_OWNER_NOT_FOUND = "Facility owner not found";
     public static final String FACILITY_ID_MANDATORY = "Facility Id mandatory";
     public static final String MAX_NEWS_FEED_EXISTS = "Maximum news feed size 10 exists";
-    public static final String USER_IN_ACTIVE_SUCCESS = "User in-active successfully";
 
     public static String placeHolderMessage(final MessageFormat messageFormat, final Object... args) {
         return messageFormat.format(args);

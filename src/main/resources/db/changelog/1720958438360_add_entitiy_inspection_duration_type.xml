@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1720958438360" author="vijayan">
+        <createTable tableName="inspection_duration_type">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+            </column>
+        </createTable>
+
+        <loadData tableName="inspection_duration_type"
+                  file="db/changelog/data/inspection_duration_type.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(255)"/>
+        </loadData>
+
+        <addColumn tableName="boiler_cogen_agency_info">
+            <column name="inspection_duration_type_id" type="BIGINT"></column>
+        </addColumn>
+
+        <addForeignKeyConstraint
+                baseColumnNames="inspection_duration_type_id"
+                baseTableName="boiler_cogen_agency_info"
+                constraintName="fk_boiler_cogen_agency_info_inspection_duration_type_id"
+                referencedColumnNames="id"
+                referencedTableName="inspection_duration_type"/>
+    </changeSet>
+</databaseChangeLog>

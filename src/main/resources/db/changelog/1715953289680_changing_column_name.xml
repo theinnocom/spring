@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1715953289680" author="Vijayan">
+        <renameColumn tableName="automated_external_defibrillator" columnDataType="varchar(255)" oldColumnName="make_by" newColumnName="make"/>
+        <renameColumn tableName="portable_fire_extinguisher" columnDataType="varchar(255)" oldColumnName="make_by" newColumnName="make"/>
+        <addColumn tableName="automated_external_defibrillator">
+            <column name="status_id" type="bigint"/>
+        </addColumn>
+        <addColumn tableName="portable_fire_extinguisher">
+            <column name="status_id" type="bigint"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="portable_fire_extinguisher"
+                                 constraintName="fk_portable_fire_extinguisher_status_id"
+                                 referencedColumnNames="status_id"
+                                 referencedTableName="elevator_status"/>
+
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="automated_external_defibrillator"
+                                 constraintName="fk_automated_external_defibrillator_status_id"
+                                 referencedColumnNames="status_id"
+                                 referencedTableName="elevator_status"/>
+    </changeSet>
+</databaseChangeLog>

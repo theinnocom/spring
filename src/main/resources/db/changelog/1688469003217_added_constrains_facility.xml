@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="26" author="Vijayan">
+        <addForeignKeyConstraint baseColumnNames="created_by"
+                                 baseTableName="facility"
+                                 constraintName="fk_facility__user_id_created_by"
+                                 referencedColumnNames="user_id"
+                                 referencedTableName="user"/>
+
+        <addForeignKeyConstraint baseColumnNames="updated_by"
+                                 baseTableName="facility"
+                                 constraintName="fk_facility__user_id_updated_by"
+                                 referencedColumnNames="user_id"
+                                 referencedTableName="user"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1721673944993" author="vijayan">
+        <createTable tableName="automated_external_defibrillator_agency_info">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ed_battery_date" type="BIGINT">
+            </column>
+            <column name="defib_pads_expiration_date" type="BIGINT">
+            </column>
+            <column name="inspection_date" type="BIGINT">
+            </column>
+            <column name="last_inspection_date" type="BIGINT">
+            </column>
+            <column name="next_inspection_date" type="BIGINT">
+            </column>
+            <column name="notes" type="VARCHAR(255)"/>
+            <column name="automated_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="automated_external_defibrillator_agency_info"
+                                 baseColumnNames="automated_id"
+                                 constraintName="fk_automated_external_defibrillator_agency_info_automated_id"
+                                 referencedTableName="automated_external_defibrillator"
+                                 referencedColumnNames="external_defibrillator_id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1728927008581" author="vijayan">
+        <addColumn tableName="generator">
+            <column name="status_id" type="BIGINT"></column>
+        </addColumn>
+
+        <addColumn tableName="air_conditioning_unit">
+            <column name="status_id" type="BIGINT"></column>
+        </addColumn>
+
+        <addColumn tableName="rpz">
+            <column name="status_id" type="BIGINT"></column>
+        </addColumn>
+
+        <addColumn tableName="land_fill">
+            <column name="status_id" type="BIGINT"></column>
+        </addColumn>
+
+        <addColumn tableName="first_aid_kit">
+            <column name="status_id" type="BIGINT"></column>
+        </addColumn>
+
+        <addColumn tableName="eto">
+            <column name="status_id" type="BIGINT"></column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="generator"
+                                 baseColumnNames="status_id"
+                                 constraintName="fk_generator_status"
+                                 referencedTableName="elevator_status"
+                                 referencedColumnNames="status_id"/>
+
+        <addForeignKeyConstraint baseTableName="air_conditioning_unit"
+                                 baseColumnNames="status_id"
+                                 constraintName="fk_air_conditioning_unit_status"
+                                 referencedTableName="elevator_status"
+                                 referencedColumnNames="status_id"/>
+
+        <addForeignKeyConstraint baseTableName="rpz"
+                                 baseColumnNames="status_id"
+                                 constraintName="fk_rpz_status"
+                                 referencedTableName="elevator_status"
+                                 referencedColumnNames="status_id"/>
+
+        <addForeignKeyConstraint baseTableName="land_fill"
+                                 baseColumnNames="status_id"
+                                 constraintName="fk_land_fill_status"
+                                 referencedTableName="elevator_status"
+                                 referencedColumnNames="status_id"/>
+
+        <addForeignKeyConstraint baseTableName="first_aid_kit"
+                                 baseColumnNames="status_id"
+                                 constraintName="fk_first_aid_kit_status"
+                                 referencedTableName="elevator_status"
+                                 referencedColumnNames="status_id"/>
+
+        <addForeignKeyConstraint baseTableName="eto"
+                                 baseColumnNames="status_id"
+                                 constraintName="fk_eto_status"
+                                 referencedTableName="elevator_status"
+                                 referencedColumnNames="status_id"/>
+    </changeSet>
+</databaseChangeLog>

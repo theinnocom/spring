@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1714392746112" author="vijayan">
+        <renameColumn tableName="incinerator_crematories" oldColumnName="make_by" newColumnName="make" columnDataType="varchar(255)"/>
+        <addColumn tableName="incinerator_crematories">
+            <column name="status" type="varchar(255)"/>
+            <column name="unique_id" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="management_note" type="varchar(255)"/>
+            <column name="landmark" type="varchar(255)"/>
+            <column name="disconnected_on" type="bigint"/>
+            <column name="stack_id" type="bigint"/>
+            <column name="management_id" type="bigint"/>
+            <column name="application_id" type="varchar(255)"/>
+            <column name="unit_type_id" type="bigint"/>
+            <column name="burner_model" type="varchar(255)"/>
+            <column name="burner_serial_number" type="varchar(255)"/>
+            <column name="burner_capacity" type="varchar(255)"/>
+            <column name="waste_type_burner_id" type="bigint"/>
+            <column name="scrubber_installed" type="boolean"/>
+            <column name="co_monitor_installed" type="boolean"/>
+            <column name="opacity_monitor_installed" type="boolean"/>
+            <column name="o2_monitor_installed" type="boolean"/>
+            <column name="opacity_chart_recorder_available" type="boolean"/>
+            <column name="quarterly_cga_required" type="boolean"/>
+            <column name="temperature_measurement_required" type="boolean"/>
+            <column name="minimum_temperature_primary" type="double"/>
+            <column name="minimum_temperature_secondary" type="double"/>
+            <column name="average_facility_temperature_primary" type="double"/>
+            <column name="average_facility_temperature_secondary" type="double"/>
+        </addColumn>
+
+        <createTable tableName="unit_type">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(200)"/>
+        </createTable>
+
+        <createTable tableName="waste_type_burner">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(200)"/>
+        </createTable>
+
+        <loadData tableName="unit_type"
+                  file="db/changelog/data/unit_type.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(200)"/>
+        </loadData>
+
+        <loadData tableName="waste_type_burner"
+                  file="db/changelog/data/waste_type_burner.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(200)"/>
+        </loadData>
+
+        <addForeignKeyConstraint baseTableName="incinerator_crematories"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_incinerator_crematories__management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="incinerator_crematories"
+                                 baseColumnNames="stack_id"
+                                 constraintName="fk_incinerator_crematories__stack_id"
+                                 referencedTableName="stack"
+                                 referencedColumnNames="stack_id"/>
+
+        <addForeignKeyConstraint baseTableName="incinerator_crematories"
+                                 baseColumnNames="waste_type_burner_id"
+                                 constraintName="fk_incinerator_crematories__waste_type_burner_id"
+                                 referencedTableName="waste_type_burner"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="incinerator_crematories"
+                                 baseColumnNames="unit_type_id"
+                                 constraintName="fk_incinerator_crematories__unit_type_id"
+                                 referencedTableName="unit_type"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+</databaseChangeLog>

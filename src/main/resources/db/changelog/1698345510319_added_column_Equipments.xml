@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1698345510320" author="Vijayan">
+        <renameColumn tableName="printing_press" oldColumnName="printerId" newColumnName="printer_id" columnDataType="bigint"/>
+        <addAutoIncrement tableName="printing_press" columnName="printer_id" columnDataType="bigint"/>
+        <renameColumn tableName="cogen_engine_turbine" oldColumnName="engineId" newColumnName="engine_id" columnDataType="bigint"/>
+        <addAutoIncrement tableName="cogen_engine_turbine" columnName="engine_id" columnDataType="bigint"/>
+
+<!--        <dropUniqueConstraint tableName="cogen_engine_turbine" constraintName="location" uniqueColumns="location"/>-->
+<!--        <dropUniqueConstraint tableName="stack" constraintName="location" uniqueColumns="location"/>-->
+<!--        <dropUniqueConstraint tableName="air_conditioning_unit" constraintName="location" uniqueColumns="location"/>-->
+<!--        <dropUniqueConstraint tableName="absorber_chiller" constraintName="location" uniqueColumns="location"/>-->
+        <addColumn tableName="generator">
+            <column name="location" type="varchar(255)"/>
+        </addColumn>
+
+    </changeSet>
+</databaseChangeLog>

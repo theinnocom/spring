@@ -3,6 +3,7 @@ package com.inTrack.spring.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * @author vijayan
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "user_role")
+@Accessors(chain = true)
 public class UserRole {
 
     @Id
@@ -21,4 +23,7 @@ public class UserRole {
 
     @Column(name = "role")
     private String role;
+
+    @Column(name = "is_cof")
+    private boolean isCof;
 }

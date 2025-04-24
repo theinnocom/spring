@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1722519758977" author="vijayan">
+        <createTable tableName="post_log">
+            <column name="employee_id" type="Bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="employee_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_title" type="varchar(255)"/>
+            <column name="date_of_injury_or_illness" type="bigint"/>
+            <column name="incident_time" type="varchar(50)"/>
+            <column name="incident_location" type="varchar(255)"/>
+            <column name="injury_or_illness_description" type="varchar(255)"/>
+            <column name="harmful_object_or_substance" type="varchar(255)"/>
+            <column name="activity_before_incident" type="varchar(255)"/>
+            <column name="previous_illness_or_injury_description" type="varchar(255)"/>
+            <column name="health_care_professional" type="varchar(255)"/>
+            <column name="injury_or_illness_category" type="varchar(255)"/>
+            <column name="days_away_from_work" type="int"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="note" type="varchar(255)"/>
+            <column name="facility_id" type="bigint"/>
+            <column name="building_id" type="bigint"/>
+        </createTable>
+
+        <createTable tableName="post_log_agency">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="annual_log_record_inspected" type="BOOLEAN">
+            </column>
+            <column name="last_inspection_date" type="bigint">
+            </column>
+            <column name="next_inspection_date" type="bigint">
+            </column>
+            <column name="inspected_by" type="VARCHAR(255)">
+            </column>
+            <column name="note" type="Varchar(255)">
+            </column>
+            <column name="five_year_log_record_available" type="BOOLEAN">
+            </column>
+            <column name="post_log_id" type="bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="post_log"
+                                 baseColumnNames="facility_id"
+                                 constraintName="fk_post_log_facility_id"
+                                 referencedTableName="facility"
+                                 referencedColumnNames="facility_id"/>
+
+        <addForeignKeyConstraint baseTableName="post_log"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_post_log_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+
+        <addForeignKeyConstraint baseTableName="post_log_agency"
+                                 baseColumnNames="post_log_id"
+                                 constraintName="fk_post_log_agency_post_log_id"
+                                 referencedTableName="post_log"
+                                 referencedColumnNames="employee_id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1719319779404" author="vijayan">
+        <renameColumn tableName="hydraulic_storage_tank" oldColumnName="management" newColumnName="management_id"
+                      columnDataType="bigint"/>
+
+        <addForeignKeyConstraint baseTableName="hydraulic_storage_tank"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_hydraulic_storage_tank_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+</databaseChangeLog>

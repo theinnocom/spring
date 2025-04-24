@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1724372820957" author="vijayan">
+        <createTable tableName="waste">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="waste" type="VARCHAR(255)">
+            </column>
+            <column name="type_of_waste_id" type="BIGINT">
+            </column>
+            <column name="name_of_waste" type="VARCHAR(255)">
+            </column>
+            <column name="waste_unit_id" type="BIGINT">
+            </column>
+            <column name="waste_volume_gallons" type="DOUBLE">
+            </column>
+            <column name="waste_density" type="DOUBLE">
+            </column>
+            <column name="waste_quantity_lbs" type="DOUBLE">
+            </column>
+            <column name="hazardous_waste_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="waste"
+                                 baseColumnNames="hazardous_waste_id"
+                                 constraintName="fk_waste_hazardous_waste_id"
+                                 referencedTableName="hazardous_waste"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="waste"
+                                 baseColumnNames="type_of_waste_id"
+                                 constraintName="fk_waste_type_of_waste_id"
+                                 referencedTableName="type_of_waste"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="waste"
+                                 baseColumnNames="waste_unit_id"
+                                 constraintName="fk_waste_waste_unit_id"
+                                 referencedTableName="waste_unit"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

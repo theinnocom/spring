@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1733735438328" author="vijayan">
+        <createTable tableName="facility_owner_detail">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="owner_name" type="VARCHAR(255)">
+            </column>
+            <column name="address_line" type="VARCHAR(255)">
+            </column>
+            <column name="alter_address_line" type="VARCHAR(255)">
+            </column>
+            <column name="city" type="VARCHAR(255)">
+            </column>
+            <column name="state" type="VARCHAR(255)">
+            </column>
+            <column name="zipcode" type="VARCHAR(20)">
+            </column>
+            <column name="email" type="VARCHAR(255)">
+            </column>
+            <column name="mobile_phone" type="VARCHAR(20)">
+            </column>
+            <column name="alter_mobile_phone" type="VARCHAR(20)">
+            </column>
+            <column name="fax_no" type="VARCHAR(20)">
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

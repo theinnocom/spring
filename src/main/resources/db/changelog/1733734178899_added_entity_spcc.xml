@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1733734178899" author="vijayan">
+
+        <createTable tableName="audit_cycle">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="type" type="varchar(100)"/>
+        </createTable>
+
+        <loadData tableName="audit_cycle"
+                  file="db/changelog/data/audit_cycle.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(100)"/>
+        </loadData>
+
+        <createTable tableName="spcc">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="pbs_number" type="VARCHAR(255)" />
+            <column name="pbs_expiration" type="BIGINT" />
+            <column name="cumulative_ast" type="DOUBLE" />
+            <column name="cumulative_ust" type="DOUBLE" />
+            <column name="spcc_plan_required" type="BOOLEAN" />
+            <column name="last_plan_date" type="BIGINT" />
+            <column name="next_plan_date" type="BIGINT" />
+            <column name="spcc_training_required" type="BOOLEAN" />
+            <column name="last_training_date" type="BIGINT" />
+            <column name="next_training_date" type="BIGINT" />
+            <column name="spcc_audit_required" type="BOOLEAN" />
+            <column name="der40_certified_staff_count" type="INTEGER" />
+            <column name="job_number" type="VARCHAR(255)" />
+            <column name="note" type="varchar(255)" />
+            <column name="audit_cycle_id" type="BIGINT" />
+            <column name="facility_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="fk_spcc_audit_cycle"
+                baseTableName="spcc"
+                baseColumnNames="audit_cycle_id"
+                referencedTableName="audit_cycle"
+                referencedColumnNames="id" />
+
+        <addForeignKeyConstraint
+                constraintName="fk_spcc_facility"
+                baseTableName="spcc"
+                baseColumnNames="facility_id"
+                referencedTableName="facility"
+                referencedColumnNames="facility_id" />
+
+        <createTable tableName="certificate_type">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="type" type="varchar(500)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

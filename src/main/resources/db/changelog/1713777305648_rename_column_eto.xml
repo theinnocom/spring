@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1713777305648" author="vijayan">
+        <renameColumn tableName="eto" oldColumnName="make_by" newColumnName="make" columnDataType="varchar(255)"/>
+        <addColumn tableName="eto">
+            <column name="application_id" type="varchar(255)"/>
+            <column name="stack_exhausting" type="varchar(255)"/>
+            <column name="device_type" type="varchar(255)"/>
+            <column name="model" type="varchar(255)"/>
+            <column name="serial_number" type="varchar(255)"/>
+            <column name="volume_cubic_ft" type="double"/>
+            <column name="gas_mixture_type" type="varchar(255)"/>
+            <column name="weight_of_container" type="double"/>
+            <column name="installation_date" type="date"/>
+            <column name="average_use_hours_per_day" type="double"/>
+            <column name="average_use_days_per_week" type="double"/>
+            <column name="is_abator" type="boolean"/>
+            <column name="abator_make" type="varchar(255)"/>
+            <column name="abator_model" type="varchar(255)"/>
+            <column name="daily_records_available" type="boolean"/>
+            <column name="comments" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1714651363167" author="vijayan">
+        <addColumn tableName="user">
+            <column name="designation" type="varchar(255)"/>
+        </addColumn>
+        <dropColumn tableName="certificate_of_fitness" columnName="equipment_id"/>
+        <dropColumn tableName="certificate_of_fitness" columnName="mobile_number"/>
+        <dropColumn tableName="certificate_of_fitness" columnName="comment"/>
+        <dropColumn tableName="certificate_of_fitness" columnName="special_note"/>
+        <dropForeignKeyConstraint baseTableName="certificate_of_fitness" constraintName="fk_certificate_of_fitness_facility_facility_by"/>
+        <dropColumn tableName="certificate_of_fitness" columnName="facility_id"/>
+        <dropForeignKeyConstraint baseTableName="certificate_of_fitness" constraintName="fk_certificate_of_fitness_building_id"/>
+        <dropColumn tableName="certificate_of_fitness" columnName="building_id"/>
+    </changeSet>
+</databaseChangeLog>

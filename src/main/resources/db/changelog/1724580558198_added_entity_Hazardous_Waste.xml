@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1724580558198" author="vijayan">
+        <createTable tableName="hazardous_waste">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="manifest_number" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="generator_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_manifest" type="VARCHAR(255)"/>
+            <column name="waste_generation_category_id" type="BIGINT"/>
+            <column name="total_waste_lbs" type="DOUBLE"/>
+            <column name="contact_person" type="VARCHAR(255)"/>
+            <column name="phone_number" type="VARCHAR(255)"/>
+            <column name="company_name_collecting_waste" type="VARCHAR(255)"/>
+            <column name="waste_transporting_company_id" type="VARCHAR(255)"/>
+            <column name="final_destination_facility_id" type="VARCHAR(255)"/>
+            <column name="note" type="VARCHAR(255)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="hazardous_waste"
+                                 baseColumnNames="waste_generation_category_id"
+                                 constraintName="fk_hazardous_waste_hazardous_waste_generation_category"
+                                 referencedTableName="waste_generation_category"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

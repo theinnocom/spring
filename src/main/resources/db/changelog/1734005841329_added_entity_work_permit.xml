@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1734005841329" author="vijayan">
+        <createTable tableName="work_permit">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="permit_number" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="work_type" type="VARCHAR(255)"/>
+            <column name="job_type" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="filing_date" type="BIGINT"/>
+            <column name="job_start_date" type="BIGINT"/>
+            <column name="expiry_date" type="BIGINT"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="issued_to" type="VARCHAR(255)"/>
+            <column name="registration_number" type="VARCHAR(255)"/>
+            <column name="business_name" type="VARCHAR(255)"/>
+            <column name="phone_number" type="VARCHAR(255)"/>
+            <column name="note" type="VARCHAR(255)"/>
+            <column name="job_no" type="BIGINT"/>
+            <column name="building_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseColumnNames="job_no"
+                baseTableName="work_permit"
+                constraintName="fk_work_permit_job_filing_information"
+                referencedColumnNames="job_filing_id"
+                referencedTableName="job_filing_information"/>
+
+        <addForeignKeyConstraint
+                baseColumnNames="building_id"
+                baseTableName="work_permit"
+                constraintName="fk_work_permit_building"
+                referencedColumnNames="building_id"
+                referencedTableName="building"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,12 @@
+id;type
+1;Active
+2;Dismissed
+3;Resolved
+4;Docketed
+5;Paid In Full
+6;Default
+7;New Issuance
+8;Hearing Completed
+9;Rescheduled
+10;In Violation
+11;Stipulation

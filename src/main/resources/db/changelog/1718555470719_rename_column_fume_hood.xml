@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1718555470719" author="vijayan">
+        <createTable tableName="fume_hood_chemical_detail">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="chemical_name" type="VARCHAR(255)"/>
+            <column name="volume" type="DOUBLE"/>
+            <column name="density" type="DOUBLE"/>
+            <column name="voc_percentage" type="DOUBLE"/>
+            <column name="voc" type="DOUBLE"/>
+            <column name="fume_hood_id" type="BIGINT"/>
+        </createTable>
+
+        <addColumn tableName="fume_hood">
+            <column name="type" type="varchar(255)"/>
+            <column name="hours_of_operation" type="double"/>
+            <column name="stack_id" type="bigint"/>
+            <column name="status_id" type="bigint"/>
+        </addColumn>
+
+        <addColumn tableName="fire_alarm">
+            <column name="status_id" type="bigint"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="fume_hood"
+                                 baseColumnNames="stack_id"
+                                 referencedTableName="stack"
+                                 referencedColumnNames="stack_id"
+                                 constraintName="fk_fume_hood_stack" />
+
+        <addForeignKeyConstraint baseTableName="fume_hood"
+                                 baseColumnNames="status_id"
+                                 referencedTableName="elevator_status"
+                                 referencedColumnNames="status_id"
+                                 constraintName="fk_fume_hood_elevator_status" />
+
+        <addForeignKeyConstraint baseTableName="fire_alarm"
+                                 baseColumnNames="status_id"
+                                 referencedTableName="elevator_status"
+                                 referencedColumnNames="status_id"
+                                 constraintName="fk_fire_alarm_elevator_status" />
+
+        <addForeignKeyConstraint baseTableName="fume_hood_chemical_detail"
+                                 baseColumnNames="fume_hood_id"
+                                 referencedTableName="fume_hood"
+                                 referencedColumnNames="fume_hood_id"
+                                 constraintName="fk_fume_hood_chemical_detail_fume_hood" />
+    </changeSet>
+</databaseChangeLog>

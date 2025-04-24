@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1721675041475" author="vijayan">
+       <createTable tableName="bulk_oxygen_storage_agency_info">
+           <column name="id" type="BIGINT" autoIncrement="true">
+               <constraints primaryKey="true" nullable="false"/>
+           </column>
+           <column name="permit_id" type="VARCHAR(255)">
+               <constraints unique="true"/>
+           </column>
+           <column name="issue_date" type="BIGINT">
+               <constraints nullable="false"/>
+           </column>
+           <column name="expiration_date" type="BIGINT">
+               <constraints nullable="false"/>
+           </column>
+           <column name="note" type="VARCHAR(255)"/>
+           <column name="fire_department_permit_obtained" type="VARCHAR(255)">
+               <constraints nullable="false"/>
+           </column>
+           <column name="test_performed" type="VARCHAR(255)">
+               <constraints nullable="false"/>
+           </column>
+           <column name="last_test_date" type="BIGINT"/>
+           <column name="next_test_date" type="BIGINT"/>
+           <column name="oxygen_storage_id" type="BIGINT"/>
+           <column name="oxygen_storage_agency_id" type="BIGINT"/>
+       </createTable>
+
+        <createTable tableName="bulk_oxygen_storage_agency">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="bulk_oxygen_storage_agency_info"
+                                 baseColumnNames="oxygen_storage_id"
+                                 constraintName="fk_bulk_oxygen_storage_agency_info_oxygen_storage_id"
+                                 referencedTableName="bulk_oxygen_storage"
+                                 referencedColumnNames="oxygen_storage_id"/>
+
+        <addForeignKeyConstraint baseTableName="bulk_oxygen_storage_agency_info"
+                                 baseColumnNames="oxygen_storage_agency_id"
+                                 constraintName="fk_bulk_oxygen_storage_agency_info_oxygen_storage_agency_id"
+                                 referencedTableName="bulk_oxygen_storage_agency"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

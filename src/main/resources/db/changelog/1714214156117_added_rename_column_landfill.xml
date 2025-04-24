@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1714214156117" author="vijayan">
+        <renameColumn tableName="land_fill" oldColumnName="make_by" newColumnName="make" columnDataType="varchar(255)"/>
+        <addColumn tableName="land_fill">
+            <column name="management_note" type="varchar(255)"/>
+            <column name="management_id" type="bigint"/>
+            <column name="disconnected_on" type="bigint"/>
+            <column name="landmark" type="varchar(255)"/>
+            <column name="unique_id" type="varchar(255)"/>
+            <column name="application_id" type="varchar(255)"/>
+            <column name="operation_commence_date" type="varchar(255)"/>
+            <column name="status_of_source" type="varchar(255)"/>
+            <column name="linked_to_cogen_or_turbines" type="boolean"/>
+            <column name="linked_equipment_list" type="varchar(255)"/>
+            <column name="cap_on_lfg_monthly_production_quantity" type="boolean"/>
+            <column name="lfg_monthly_production_quantity_cap" type="varchar(255)"/>
+            <column name="cap_on_lfg_combustion_by_cogen_or_turbine_unit" type="boolean"/>
+            <column name="lfg_combustion_cap" type="varchar(255)"/>
+            <column name="monitoring_required" type="boolean"/>
+            <column name="five_percent_measured_allowable_value" type="varchar(255)"/>
+            <column name="ch4_percent_measured_allowable_value" type="varchar(255)"/>
+            <column name="flue_gas_temperature_limit" type="boolean"/>
+            <column name="flue_gas_temperature_limit_tested_allowable_value" type="varchar(255)"/>
+            <column name="nox_tested_allowable_emission" type="varchar(255)"/>
+            <column name="co_tested_allowable_emission" type="varchar(255)"/>
+            <column name="others_tested_allowable_emission" type="varchar(255)"/>
+            <column name="limit_on_yearly_operating_hours" type="boolean"/>
+            <column name="yearly_operating_hours" type="varchar(255)"/>
+            <column name="comments" type="varchar(255)"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="land_fill"
+                                 baseColumnNames="management_id"
+                                 constraintName="fk_land_fill_management_id"
+                                 referencedTableName="management_type"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

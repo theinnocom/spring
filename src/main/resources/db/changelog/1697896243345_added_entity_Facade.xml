@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1697896243345" author="Vijayan">
+        <createTable tableName="facade">
+            <column name="facade_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="is_facade_inspection_available" type="Boolean" defaultValue="false"/>
+            <column name="filing_number" type="varchar(200)"/>
+            <column name="facade_period" type="bigint"/>
+            <column name="cycle" type="bigint"/>
+            <column name="number_of_stories" type="bigint"/>
+            <column name="exterior_wall_type" type="varchar(200)"/>
+            <column name="initial_filing_date" type="bigint"/>
+            <column name="initial_filing_status" type="varchar(200)"/>
+            <column name="last_cycle_filing_date" type="bigint"/>
+            <column name="prior_status" type="varchar(200)"/>
+            <column name="field_inspection_completed_date" type="bigint"/>
+            <column name="QEWI_signed_date" type="bigint"/>
+            <column name="current_status" type="varchar(200)"/>
+            <column name="applicant_name" type="varchar(200)"/>
+            <column name="license" type="varchar(200)"/>
+            <column name="note" type="varchar(200)"/>
+            <column name="created_at" type="bigint"/>
+            <column name="updated_at" type="bigint"/>
+            <column name="building_id" type="bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="facade"
+                                 baseColumnNames="building_id"
+                                 constraintName="fk_facade_building_id"
+                                 referencedTableName="building"
+                                 referencedColumnNames="building_id"/>
+    </changeSet>
+</databaseChangeLog>

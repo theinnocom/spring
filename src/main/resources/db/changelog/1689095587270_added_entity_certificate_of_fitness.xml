@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="28" author="Vijayan">
+        <createTable tableName="certificate_of_fitness">
+            <column name="certificate_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="equipment_id" type="bigint"/>
+            <column name="certificate_number" type="varchar(100)">
+                <constraints unique="true"/>
+            </column>
+            <column name="mobile_number" type="varchar(20)"/>
+            <column name="issued_date" type="bigint"/>
+            <column name="expiry_date" type="bigint"/>
+            <column name="type" type="varchar(200)"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="special_note" type="varchar(255)"/>
+            <column name="comment" type="varchar(255)"/>
+            <column name="is_active" type="boolean"/>
+            <column name="facility_id" type="bigint"/>
+            <column name="user_id" type="bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="facility_id"
+                                 baseTableName="certificate_of_fitness"
+                                 constraintName="fk_certificate_of_fitness_facility_facility_by"
+                                 referencedColumnNames="facility_id"
+                                 referencedTableName="facility"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="certificate_of_fitness"
+                                 constraintName="fk_certificate_of_fitness_user_user_id"
+                                 referencedColumnNames="user_id"
+                                 referencedTableName="user"/>
+    </changeSet>
+</databaseChangeLog>

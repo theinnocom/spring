@@ -1,7 +1,7 @@
 package com.inTrack.spring.service;
 
-import com.inTrack.spring.dto.request.FacilityReqDTO;
-import com.inTrack.spring.dto.response.FacilityResDTO;
+import com.inTrack.spring.dto.requestDTO.FacilityReqDTO;
+import com.inTrack.spring.dto.responseDTO.FacilityResDTO;
 import com.inTrack.spring.entity.Facility;
 import com.inTrack.spring.entity.FacilityOwnerDetail;
 import com.inTrack.spring.entity.User;
@@ -72,7 +72,9 @@ public class FacilityService {
             facilityResDTOS.add(this.setFacility(this.facilityRepository.findByFacilityIdAndActive(id, true)));
         } else {
             final List<Facility> facilities = this.facilityRepository.findByCreatedByAndActive(user, true);
-            facilities.forEach(facility -> facilityResDTOS.add(this.setFacility(facility)));
+            facilities.forEach(facility -> {
+                facilityResDTOS.add(this.setFacility(facility));
+            });
         }
         return facilityResDTOS;
     }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1728842776941" author="vijayan">
+        <sql>SET FOREIGN_KEY_CHECKS = 0;</sql>
+        <sql>TRUNCATE TABLE inTrack.boiler_cogen_agency;</sql>
+        <sql>SET FOREIGN_KEY_CHECKS = 1;</sql>
+        <loadData tableName="boiler_cogen_agency"
+                  file="db/changelog/data/boiler_cogen_agency_drop_down_add_data.csv"
+                  separator=";"
+                  usePreparedStatements="false">
+            <column name="id" type="bigint"/>
+            <column name="type" type="varchar(255)"/>
+            <column name="is_cogen" type="BOOLEAN"/>
+            <column name="is_fire_alarm" type="BOOLEAN"/>
+            <column name="is_fume_hood" type="BOOLEAN"/>
+            <column name="is_paint_spray_booth" type="BOOLEAN"/>
+            <column name="is_boiler" type="BOOLEAN"/>
+            <column name="is_kitchen" type="BOOLEAN"/>
+            <column name="is_rpz" type="BOOLEAN"/>
+            <column name="is_hydraulic" type="BOOLEAN"/>
+            <column name="is_portable" type="BOOLEAN"/>
+            <column name="is_elevator" type="BOOLEAN"/>
+            <column name="is_emergency" type="BOOLEAN"/>
+            <column name="is_land_fill" type="BOOLEAN"/>
+            <column name="is_printing_press" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1701552400518" author="Vijayan">
+
+        <addColumn tableName="air_conditioning_unit">
+            <column name="model" type="varchar(200)"/>
+            <column name="capacity" type="varchar(100)"/>
+            <column name="chiller_type" type="varchar(200)"/>
+            <column name="EUP_card_available" type="varchar(255)"/>
+            <column name="inspector" type="varchar(200)"/>
+            <column name="FDNY_inspection_date" type="bigint"/>
+            <column name="inspection_date" type="bigint"/>
+            <column name="chiller_group_id" type="bigint"/>
+            <column name="EPA_submitted_date" type="bigint"/>
+            <column name="EPA_approval_date" type="bigint"/>
+            <column name="refrigeration_recovery_involved" type="boolean"/>
+            <column name="EPA_refrigeration_recovery_involved" type="boolean"/>
+            <column name="EPA_record_maintained" type="boolean"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="air_conditioning_unit"
+                                 baseColumnNames="chiller_group_id"
+                                 constraintName="fk_air_conditioning_unit_chiller_group_id"
+                                 referencedTableName="chiller_group"
+                                 referencedColumnNames="chiller_group_id"/>
+    </changeSet>
+</databaseChangeLog>

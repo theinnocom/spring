@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1733747299931" author="vijayan">
+        <sql>ALTER TABLE inTrack.facility DROP KEY permit_id</sql>
+        <sql>ALTER TABLE inTrack.facility DROP FOREIGN KEY fk_user__address_id</sql>
+        <sql>ALTER TABLE inTrack.facility DROP FOREIGN KEY fk_user__permit_type_id</sql>
+        <dropColumn columnName="client_name" tableName="facility"/>
+        <dropColumn columnName="facility_in_charge" tableName="facility"/>
+        <dropColumn columnName="permit_type_id" tableName="facility"/>
+        <dropColumn columnName="permit_id" tableName="facility"/>
+        <dropColumn columnName="gross_square_feet" tableName="facility"/>
+        <dropColumn columnName="permit_expiration_date" tableName="facility"/>
+        <dropColumn columnName="address_id" tableName="facility"/>
+    </changeSet>
+</databaseChangeLog>
